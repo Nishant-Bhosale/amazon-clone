@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Banner from "../../components/Carousel/Carousel";
-import Product from "../../components/Product/Product";
+
+import ProductContainer from "../../components/ProductContainer/ProductContainer";
 
 function MainPage() {
 	const [items, setItems] = useState([]);
@@ -14,9 +15,10 @@ function MainPage() {
 	return (
 		<div>
 			<Banner />
-			{items.map((item) => {
+			{/* {items.map((item) => {
 				return <Product key={item.id} item={item} />;
-			})}
+			})} */}
+			<ProductContainer products={items} />
 		</div>
 	);
 }

@@ -1,0 +1,20 @@
+.product {
+	height: 400px;
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: white;
+	align-items: center;
+	border: 2px solid black;
+	position: relative;
+	bottom: 7rem;
+	z-index: 1000;
+	margin: 0 auto;
+	border-radius: 15px;
+}
+
+.product-info {
+	width: 75%;
+	text-align: left;
+}
