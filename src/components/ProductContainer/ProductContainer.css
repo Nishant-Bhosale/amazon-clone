@@ -4,7 +4,7 @@
 	position: relative;
 	bottom: 5rem;
 	z-index: 500;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(4, 1fr);
 	/* background-color: rgb(188, 230, 238); */
 	margin: auto;
 	gap: 3rem;

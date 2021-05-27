@@ -11,10 +11,35 @@
 	bottom: 7rem;
 	z-index: 1000;
 	margin: 0 auto;
+	transition: all 0.4s ease-in-out;
 	border-radius: 15px;
 }
 
-.product-info {
-	width: 75%;
-	text-align: left;
+.product:hover {
+	transform: translateY(-40px);
+	box-shadow: 4px 7px 7px #ccc;
+}
+
+div.tip:hover {
+	position: relative;
+}
+
+div.tip span {
+	display: none;
+	transition: all 0.4s ease-in-out;
+}
+
+div.tip:hover span {
+	border: white 2px solid;
+	padding: 5px 20px 5px 5px;
+	display: block;
+	z-index: 100;
+	background-color: black;
+	color: white;
+	left: 0px;
+	margin: 10px;
+	width: 250px;
+	position: absolute;
+	top: 3rem;
+	text-decoration: none;
 }

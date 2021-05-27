@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Banner from "../../components/Carousel/Carousel";
-
+import Spinner from "../../components/Spinner/Spinner";
 import ProductContainer from "../../components/ProductContainer/ProductContainer";
 
 function MainPage() {
 	const [items, setItems] = useState([]);
+	const [loading, setLoading] = useState(true);
 	useEffect(() => {
-		axios.get("https://fakestoreapi.com/products").then((res) => {
-			console.log(res.data);
-			setItems(res.data);
-		});
+		axios
+			.get("https://fakestoreapi.com/products")
+			.then((res) => {
+				console.log(res.data);
+				setItems(res.data);
+				setLoading(false);
+			})
+			.catch((error) => {
+				console.log(error);
+				setLoading(false);
+			});
 	}, []);
+
 	return (
 		<div>
 			<Banner />
-			{/* {items.map((item) => {
-				return <Product key={item.id} item={item} />;
-			})} */}
-			<ProductContainer products={items} />
+			{loading ? <Spinner /> : <ProductContainer products={items} />}
 		</div>
 	);
 }
