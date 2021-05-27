@@ -1,0 +1,24 @@
+.sticky-navbar {
+	position: sticky;
+	margin-top: 3rem;
+	background: black;
+	color: white;
+}
+
+.sticky-navbar-items {
+	height: 2rem;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+.sticky-navbar-item {
+	transition: all 0.3s ease-out;
+	padding-top: 7px;
+	height: 100%;
+}
+
+.sticky-navbar-item:hover {
+	color: black;
+	cursor: pointer;
+	background: white;
+}

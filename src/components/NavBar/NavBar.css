@@ -1,0 +1,23 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 6000;
+	background-color: antiquewhite;
+	height: 3rem;
+}
+
+.navigation-items {
+	display: flex;
+	width: 50%;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+/* .sticky-navbar {
+	position: sticky;
+} */
