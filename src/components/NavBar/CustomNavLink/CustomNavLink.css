@@ -1,0 +1,13 @@
+.sticky-navbar-item {
+	transition: all 0.3s ease-out;
+	padding-top: 7px;
+	height: 100%;
+	text-decoration: none;
+	color: white;
+}
+
+.sticky-navbar-item:hover {
+	color: black;
+	cursor: pointer;
+	background: white;
+}
