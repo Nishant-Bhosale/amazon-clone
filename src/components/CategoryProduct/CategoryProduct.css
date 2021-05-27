@@ -1,0 +1,16 @@
+.horizontal-product {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 2rem auto;
+	background-color: white;
+	width: 60rem;
+}
+
+.product-info-wrapper {
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}

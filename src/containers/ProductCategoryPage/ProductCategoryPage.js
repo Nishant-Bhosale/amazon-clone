@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ProductCategoryPage.css";
-
+import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
 const ProductCategoryPage = (props) => {
 	const [products, setProducts] = useState([]);
 	const productType = props.location.state.value;
@@ -13,11 +13,14 @@ const ProductCategoryPage = (props) => {
 				setProducts(result.data);
 			});
 	});
+
 	return (
-		<div>
-			{products.map((product) => {
-				return <h3>{product.title}</h3>;
-			})}
+		<div className="product-category-page">
+			<div className="wrapper">
+				{products.map((product) => {
+					return <CategoryProduct key={product.id} item={product} />;
+				})}
+			</div>
 		</div>
 	);
 };
