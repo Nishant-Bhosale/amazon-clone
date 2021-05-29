@@ -1,0 +1,7 @@
+.cart-icon {
+	transition: all 0.3s ease-in-out;
+}
+.cart-icon:hover {
+	background-color: #ccc;
+	transform: scale(1.3);
+}

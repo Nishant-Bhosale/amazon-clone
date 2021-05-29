@@ -18,6 +18,12 @@
 	align-items: center;
 }
 
-/* .sticky-navbar {
-	position: sticky;
-} */
+.navigation-item {
+	text-decoration: none;
+	color: black;
+}
+
+.brand-logo {
+	text-decoration: none;
+	color: black;
+}

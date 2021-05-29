@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./NavBar.css";
 import StickyNav from "./StickyNav/StickyNav";
 const NavBar = () => {
@@ -6,11 +7,15 @@ const NavBar = () => {
 		<React.Fragment>
 			<div>
 				<nav className="navbar">
-					<div className="brand-logo">Amazon</div>
+					<Link className="brand-logo" to="/">
+						Amazon
+					</Link>
 					<div className="navigation-items">
 						<div className="navigation-item">Your Address</div>
 						<div className="navigation-item">Authentication</div>
-						<div className="navigation-item">Cart</div>
+						<Link className="navigation-item" to="/mycart">
+							Cart
+						</Link>
 					</div>
 				</nav>
 			</div>

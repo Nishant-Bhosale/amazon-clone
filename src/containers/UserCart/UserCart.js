@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
 import axios from "axios";
 
 const UserCart = (props) => {
@@ -17,24 +18,11 @@ const UserCart = (props) => {
 
 				setUserCart(cart);
 			});
-
-		// const data = {
-		// 	name: "ram",
-		// 	price: "3",
-		// };
-		// axios
-		// 	.post(
-		// 		"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/cart.json",
-		// 		data,
-		// 	)
-		// 	.then((res) => {
-		// 		console.log(res);
-		// 	});
 	});
 	return (
 		<div>
 			{userCart.map((cartItem) => {
-				return <h1>{cartItem.name}</h1>;
+				return <CategoryProduct item={cartItem} key={cartItem.id} />;
 			})}
 		</div>
 	);
