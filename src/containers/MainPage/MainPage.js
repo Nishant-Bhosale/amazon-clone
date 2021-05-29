@@ -11,7 +11,6 @@ function MainPage() {
 		axios
 			.get("https://fakestoreapi.com/products")
 			.then((res) => {
-				console.log(res.data);
 				setItems(res.data);
 				setLoading(false);
 			})

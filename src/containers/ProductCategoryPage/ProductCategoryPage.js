@@ -5,14 +5,14 @@ import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
 const ProductCategoryPage = (props) => {
 	const [products, setProducts] = useState([]);
 	const productType = props.location.state.value;
+
 	useEffect(() => {
 		axios
 			.get(`https://fakestoreapi.com/products/category/${productType}`)
 			.then((result) => {
-				console.log(result);
 				setProducts(result.data);
 			});
-	});
+	}, [productType]);
 
 	return (
 		<div className="product-category-page">
