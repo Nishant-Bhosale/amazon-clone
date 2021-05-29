@@ -4,6 +4,7 @@ import "./ProductCategoryPage.css";
 import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
 const ProductCategoryPage = (props) => {
 	const [products, setProducts] = useState([]);
+
 	const productType = props.location.state.value;
 
 	useEffect(() => {

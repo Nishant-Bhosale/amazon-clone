@@ -2,7 +2,9 @@ import React from "react";
 import ProductInfo from "../ProductInfo/ProductInfo";
 import "./CategoryProduct.css";
 import Slide from "react-reveal/Slide";
+import ProductImage from "../ProductUI/ProductImage/ProductImage";
 import axios from "axios";
+import ProductTitle from "../ProductUI/ProductTitle/ProductTitle";
 const CategoryProduct = (props) => {
 	const postItemToCart = (item) => {
 		axios
@@ -18,16 +20,9 @@ const CategoryProduct = (props) => {
 	return (
 		<Slide left>
 			<div className="horizontal-product">
-				<div>
-					<img
-						src={props.item.image}
-						alt=""
-						title={props.item.title}
-						style={{ height: "100%", width: "200px", marginLeft: "3rem" }}
-					/>
-				</div>
+				<ProductImage item={props.item} />
 				<div className="product-info-wrapper">
-					<p>{props.item.title}</p>
+					<ProductTitle item={props.item} />
 					<ProductInfo
 						item={props.item}
 						addItemToCart={() => postItemToCart(props.item)}
