@@ -1,0 +1,16 @@
+.popup-bar {
+	position: fixed;
+	top: 6rem;
+	margin: auto;
+	left: 37rem;
+	height: 4rem;
+	width: 15rem;
+	padding: 2rem;
+	z-index: 1000;
+	font-size: 1.3rem;
+	color: white;
+	background: rgb(124, 221, 112);
+	display: grid;
+	place-items: center;
+	transition: all 0.5s ease-in-out;
+}

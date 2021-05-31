@@ -12,6 +12,7 @@ function MainPage() {
 			.get("https://fakestoreapi.com/products")
 			.then((res) => {
 				setItems(res.data);
+				console.log(res.data);
 				setLoading(false);
 			})
 			.catch((error) => {

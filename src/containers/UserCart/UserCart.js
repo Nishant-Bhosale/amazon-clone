@@ -3,7 +3,7 @@ import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
 import axios from "axios";
 import firebase from "../../utils/firebase";
 import "./UserCart.css";
-const UserCart = (props) => {
+const UserCart = () => {
 	const [userCart, setUserCart] = useState([]);
 
 	useEffect(() => {
@@ -25,16 +25,12 @@ const UserCart = (props) => {
 	const removeProductFromCart = (productID) => {
 		const productRef = firebase.database().ref("cart").child(productID);
 		productRef.remove();
-		userCart.filter((cartProduct) => {
-			console.log(cartProduct);
-			return productID !== cartProduct.id;
+
+		setUserCart((prevState) => {
+			return prevState.filter((cartProduct) => {
+				return productID !== cartProduct.id;
+			});
 		});
-		// userCart.forEach((item) => {
-		// 	if (item.id === productID) {
-		// 		console.log(userCart.splice(item.id));
-		// 		console.log(userCart);
-		// 	}
-		// });
 	};
 
 	let productOnCartPage = (
@@ -43,19 +39,29 @@ const UserCart = (props) => {
 			{userCart.map((cartItem) => {
 				return (
 					<div key={cartItem.id} className="category-product-wrapper">
-						<CategoryProduct item={cartItem} />
-						<button
-							className="deleteBtn"
-							onClick={() => removeProductFromCart(cartItem.id)}
-						>
-							Remove From Cart
-						</button>
+						<CategoryProduct
+							item={cartItem}
+							toShow={false}
+							clicked={() => removeProductFromCart(cartItem.id)}
+						/>
 					</div>
 				);
 			})}
 		</div>
 	);
-	return <React.Fragment>{productOnCartPage}</React.Fragment>;
+	return (
+		<React.Fragment>
+			{userCart.length <= 0 ? (
+				<div className="background">
+					<h1 style={{ color: "white", marginTop: "3rem", fontSize: "5rem" }}>
+						NO ITEMS FOUND IN YOUR CART
+					</h1>
+				</div>
+			) : (
+				productOnCartPage
+			)}
+		</React.Fragment>
+	);
 };
 
 export default UserCart;

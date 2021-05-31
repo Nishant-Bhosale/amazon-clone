@@ -26,6 +26,8 @@ const CategoryProduct = (props) => {
 					<ProductInfo
 						item={props.item}
 						addItemToCart={() => postItemToCart(props.item)}
+						showIcon={props.toShow}
+						delete={props.clicked}
 					/>
 				</div>
 			</div>

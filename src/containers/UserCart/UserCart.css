@@ -1,20 +1,8 @@
-.deleteBtn {
-	height: 2.3rem;
-	width: 7rem;
-	border-radius: 5px;
-	background-color: red;
-	color: white;
-	border: none;
-	font-size: 1rem;
-	position: absolute;
-	right: 27rem;
-	bottom: 1rem;
-}
-
 .background {
 	background-color: #ccc;
 	margin-top: -3rem;
-	height: 2000px;
+	padding: 3rem;
+	height: auto;
 }
 
 .category-product-wrapper {

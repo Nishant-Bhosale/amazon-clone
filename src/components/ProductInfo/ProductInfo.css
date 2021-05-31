@@ -5,3 +5,13 @@
 	width: 75%;
 	text-align: left;
 }
+
+.deleteBtn {
+	height: 2.3rem;
+	width: 7rem;
+	border-radius: 5px;
+	background-color: red;
+	color: white;
+	border: none;
+	font-size: 1rem;
+}

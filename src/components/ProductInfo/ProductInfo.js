@@ -15,8 +15,13 @@ const ProductInfo = (props) => {
 					{props.item.category.toUpperCase()}
 				</p>
 			</div>
-
-			<CartIcon clicked={props.addItemToCart} />
+			{!props.showIcon ? (
+				<button className="deleteBtn" onClick={props.delete}>
+					Remove From Cart
+				</button>
+			) : (
+				<CartIcon clicked={props.addItemToCart} />
+			)}
 		</div>
 	);
 };

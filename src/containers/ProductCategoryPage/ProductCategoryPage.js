@@ -19,7 +19,9 @@ const ProductCategoryPage = (props) => {
 		<div className="product-category-page">
 			<div className="wrapper">
 				{products.map((product) => {
-					return <CategoryProduct key={product.id} item={product} />;
+					return (
+						<CategoryProduct key={product.id} item={product} toShow={true} />
+					);
 				})}
 			</div>
 		</div>
