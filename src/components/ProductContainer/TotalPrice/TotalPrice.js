@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./TotalPrice.css";
 const TotalPrice = (props) => {
 	const [totalPrice, setTotalPrice] = useState(0);
 
@@ -13,7 +13,7 @@ const TotalPrice = (props) => {
 
 	return (
 		<div className="totalPrice">
-			<h3>Subtotal: {totalPrice.toFixed(2)}</h3>
+			<h3>Your Subtotal:$ {totalPrice.toFixed(2)}</h3>
 		</div>
 	);
 };

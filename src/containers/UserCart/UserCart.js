@@ -3,9 +3,11 @@ import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
 import axios from "axios";
 import firebase from "../../utils/firebase";
 import "./UserCart.css";
+import PopupBar from "../../components/PopupBar/PopupBar";
 import TotalPrice from "../../components/ProductContainer/TotalPrice/TotalPrice";
 const UserCart = () => {
 	const [userCart, setUserCart] = useState([]);
+	const [showPopupBar, setShowPopUpBar] = useState(false);
 
 	useEffect(() => {
 		axios
@@ -23,6 +25,10 @@ const UserCart = () => {
 			});
 	}, []);
 
+	setTimeout(() => {
+		setShowPopUpBar(false);
+	}, 2500);
+
 	const removeProductFromCart = (productID) => {
 		const productRef = firebase.database().ref("cart").child(productID);
 		productRef.remove();
@@ -32,12 +38,17 @@ const UserCart = () => {
 				return productID !== cartProduct.id;
 			});
 		});
+		setShowPopUpBar(true);
 	};
+	let popUpBar = <PopupBar>Item removed Successfully</PopupBar>;
 
 	let productOnCartPage = (
 		<div className="background">
+			{showPopupBar ? popUpBar : null}
 			<TotalPrice items={userCart} />
-			<h1 style={{ color: "white", marginTop: "3rem" }}>Your Cart</h1>
+			<h1 style={{ color: "white", marginTop: "3rem", fontSize: "3rem" }}>
+				Your Cart
+			</h1>
 			{userCart.map((cartItem) => {
 				return (
 					<div key={cartItem.id} className="category-product-wrapper">
