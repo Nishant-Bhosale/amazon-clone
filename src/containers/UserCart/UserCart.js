@@ -3,6 +3,7 @@ import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
 import axios from "axios";
 import firebase from "../../utils/firebase";
 import "./UserCart.css";
+import TotalPrice from "../../components/ProductContainer/TotalPrice/TotalPrice";
 const UserCart = () => {
 	const [userCart, setUserCart] = useState([]);
 
@@ -35,6 +36,7 @@ const UserCart = () => {
 
 	let productOnCartPage = (
 		<div className="background">
+			<TotalPrice items={userCart} />
 			<h1 style={{ color: "white", marginTop: "3rem" }}>Your Cart</h1>
 			{userCart.map((cartItem) => {
 				return (
