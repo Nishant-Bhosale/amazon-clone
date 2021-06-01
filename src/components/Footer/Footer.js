@@ -2,7 +2,7 @@ import React from "react";
 import "./Footer.css";
 const Footer = () => {
 	return (
-		<div className="footer-wrapper">
+		<footer className="footer-wrapper">
 			<h1>Contact Me</h1>
 
 			<div class="contacts-container">
@@ -22,7 +22,7 @@ const Footer = () => {
 					</a>
 				</div>
 			</div>
-		</div>
+		</footer>
 	);
 };
 

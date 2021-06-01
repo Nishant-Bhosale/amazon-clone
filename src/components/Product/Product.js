@@ -30,10 +30,11 @@ const Product = (props) => {
 
 			<Zoom>
 				<div className="product">
-					<Link
-						to={{ pathname: "productinfopage", state: { value: props.item } }}
-					>
-						<div className="tip">
+					<div className="tip">
+						<Link
+							to={{ pathname: "productinfopage", state: { value: props.item } }}
+							title="Click to see"
+						>
 							<img
 								src={props.item.image}
 								alt=""
@@ -44,14 +45,14 @@ const Product = (props) => {
 									backgroundColor: "transparent",
 								}}
 							/>
-							<span>{props.item.title}</span>
-						</div>
-						<ProductInfo
-							item={props.item}
-							addItemToCart={() => postItemToCart(props.item)}
-							showIcon={true}
-						/>
-					</Link>
+						</Link>
+						<span>{props.item.title}</span>
+					</div>
+					<ProductInfo
+						item={props.item}
+						addItemToCart={() => postItemToCart(props.item)}
+						showIcon={true}
+					/>
 				</div>
 			</Zoom>
 		</React.Fragment>

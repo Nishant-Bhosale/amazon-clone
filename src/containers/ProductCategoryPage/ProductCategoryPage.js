@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "./ProductCategoryPage.css";
 import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
+import Footer from "../../components/Footer/Footer";
+import "./ProductCategoryPage.css";
+import axios from "axios";
 const ProductCategoryPage = (props) => {
 	const [products, setProducts] = useState([]);
 
@@ -16,15 +17,18 @@ const ProductCategoryPage = (props) => {
 	}, [productType]);
 
 	return (
-		<div className="product-category-page">
-			<div className="wrapper">
-				{products.map((product) => {
-					return (
-						<CategoryProduct key={product.id} item={product} toShow={true} />
-					);
-				})}
+		<React.Fragment>
+			<div className="product-category-page">
+				<div className="wrapper">
+					{products.map((product) => {
+						return (
+							<CategoryProduct key={product.id} item={product} toShow={true} />
+						);
+					})}
+				</div>
 			</div>
-		</div>
+			<Footer />
+		</React.Fragment>
 	);
 };
 
