@@ -5,7 +5,7 @@ import "./ProductInfo.css";
 const ProductInfo = (props) => {
 	return (
 		<div className="product-info">
-			<div>
+			<div className="product-info-text">
 				<p>
 					<strong>Price: $</strong>
 					{props.item.price}

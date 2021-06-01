@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
-import axios from "axios";
-import firebase from "../../utils/firebase";
-import "./UserCart.css";
-import PopupBar from "../../components/PopupBar/PopupBar";
 import TotalPrice from "../../components/ProductContainer/TotalPrice/TotalPrice";
+import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
+import PopupBar from "../../components/PopupBar/PopupBar";
+import firebase from "../../utils/firebase";
+import axios from "axios";
+import "./UserCart.css";
+
 const UserCart = () => {
 	const [userCart, setUserCart] = useState([]);
 	const [showPopupBar, setShowPopUpBar] = useState(false);
@@ -25,9 +26,11 @@ const UserCart = () => {
 			});
 	}, []);
 
-	setTimeout(() => {
-		setShowPopUpBar(false);
-	}, 2500);
+	if (showPopupBar) {
+		setTimeout(() => {
+			setShowPopUpBar(false);
+		}, 2500);
+	}
 
 	const removeProductFromCart = (productID) => {
 		const productRef = firebase.database().ref("cart").child(productID);

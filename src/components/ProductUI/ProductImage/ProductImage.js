@@ -1,12 +1,12 @@
 import React from "react";
 
-const ProductImage = (props) => {
+const ProductImage = ({ item }) => {
 	return (
 		<div>
 			<img
-				src={props.item.image}
+				src={item.image}
 				alt=""
-				title={props.item.title}
+				title={item.title}
 				style={{ height: "100%", width: "200px", marginLeft: "3rem" }}
 			/>
 		</div>

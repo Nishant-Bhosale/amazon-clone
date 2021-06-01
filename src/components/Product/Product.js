@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import "./Product.css";
 import ProductInfo from "../ProductInfo/ProductInfo";
-import Zoom from "react-reveal/Zoom";
-import axios from "axios";
 import PopupBar from "../PopupBar/PopupBar";
+import Zoom from "react-reveal/Zoom";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "./Product.css";
+
 const Product = (props) => {
 	const [showPopupBar, setShowPopUpBar] = useState(false);
 	const postItemToCart = (item) => {
@@ -25,26 +27,31 @@ const Product = (props) => {
 	return (
 		<React.Fragment>
 			{showPopupBar ? popUpBar : null}
+
 			<Zoom>
 				<div className="product">
-					<div className="tip">
-						<img
-							src={props.item.image}
-							alt=""
-							loading="lazy"
-							style={{
-								height: "230px",
-								width: "190px",
-								backgroundColor: "transparent",
-							}}
+					<Link
+						to={{ pathname: "productinfopage", state: { value: props.item } }}
+					>
+						<div className="tip">
+							<img
+								src={props.item.image}
+								alt=""
+								loading="lazy"
+								style={{
+									height: "230px",
+									width: "190px",
+									backgroundColor: "transparent",
+								}}
+							/>
+							<span>{props.item.title}</span>
+						</div>
+						<ProductInfo
+							item={props.item}
+							addItemToCart={() => postItemToCart(props.item)}
+							showIcon={true}
 						/>
-						<span>{props.item.title}</span>
-					</div>
-					<ProductInfo
-						item={props.item}
-						addItemToCart={() => postItemToCart(props.item)}
-						showIcon={true}
-					/>
+					</Link>
 				</div>
 			</Zoom>
 		</React.Fragment>

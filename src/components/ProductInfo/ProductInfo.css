@@ -3,7 +3,13 @@
 	align-items: center;
 	justify-content: space-between;
 	width: 75%;
+	text-decoration: none;
+	color: black;
 	text-align: left;
+}
+
+.product-info-text {
+	text-decoration-color: white;
 }
 
 .deleteBtn {

@@ -1,0 +1,22 @@
+.product-page-wrapper {
+	background-color: #ccc;
+	padding: 3rem;
+}
+
+.product-description {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #fff;
+	width: 60%;
+	margin: auto;
+	margin-top: 3rem;
+
+	padding: 1rem;
+	text-align: right;
+}
+
+.description-wrapper {
+	margin-left: 5rem;
+	width: 40%;
+}
