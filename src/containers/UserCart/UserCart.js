@@ -5,6 +5,7 @@ import PopupBar from "../../components/PopupBar/PopupBar";
 import firebase from "../../utils/firebase";
 import axios from "axios";
 import "./UserCart.css";
+import Footer from "../../components/Footer/Footer";
 
 const UserCart = () => {
 	const [userCart, setUserCart] = useState([]);
@@ -76,6 +77,7 @@ const UserCart = () => {
 			) : (
 				productOnCartPage
 			)}
+			<Footer />
 		</React.Fragment>
 	);
 };

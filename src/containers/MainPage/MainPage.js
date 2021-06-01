@@ -3,6 +3,7 @@ import axios from "axios";
 import Banner from "../../components/Carousel/Carousel";
 import Spinner from "../../components/Spinner/Spinner";
 import ProductContainer from "../../components/ProductContainer/ProductContainer";
+import Footer from "../../components/Footer/Footer";
 
 function MainPage() {
 	const [items, setItems] = useState([]);
@@ -25,6 +26,7 @@ function MainPage() {
 		<div>
 			<Banner />
 			{loading ? <Spinner /> : <ProductContainer products={items} />}
+			<Footer />
 		</div>
 	);
 }
