@@ -10,8 +10,16 @@
 	border: 2px solid rgb(1, 71, 42);
 	font-size: 1.3rem;
 	color: white;
-	background: rgb(124, 221, 112);
+
 	display: grid;
 	place-items: center;
 	transition: all 0.5s ease-in-out;
+}
+
+.success {
+	background: rgb(124, 221, 112);
+}
+
+.fail {
+	background: rgb(207, 63, 63);
 }

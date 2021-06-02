@@ -3,13 +3,16 @@ import TotalPrice from "../../components/ProductContainer/TotalPrice/TotalPrice"
 import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
 import PopupBar from "../../components/PopupBar/PopupBar";
 import firebase from "../../utils/firebase";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./UserCart.css";
 import Footer from "../../components/Footer/Footer";
+import Spinner from "../../components/Spinner/Spinner";
 
 const UserCart = () => {
 	const [userCart, setUserCart] = useState([]);
 	const [showPopupBar, setShowPopUpBar] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		axios
@@ -22,7 +25,7 @@ const UserCart = () => {
 						id: key,
 					});
 				}
-
+				setLoading(false);
 				setUserCart(cart);
 			});
 	}, []);
@@ -44,7 +47,7 @@ const UserCart = () => {
 		});
 		setShowPopUpBar(true);
 	};
-	let popUpBar = <PopupBar>Item removed Successfully</PopupBar>;
+	let popUpBar = <PopupBar fail={true}>Item removed Successfully</PopupBar>;
 
 	let productOnCartPage = (
 		<div className="background">
@@ -68,11 +71,16 @@ const UserCart = () => {
 	);
 	return (
 		<React.Fragment>
-			{userCart.length <= 0 ? (
+			{loading ? (
+				<Spinner />
+			) : userCart.length <= 0 ? (
 				<div className="background">
 					<h1 style={{ color: "white", marginTop: "3rem", fontSize: "5rem" }}>
 						NO ITEMS FOUND IN YOUR CART
 					</h1>
+					<Link to="/">
+						<p>Start Adding Item?</p>
+					</Link>
 				</div>
 			) : (
 				productOnCartPage

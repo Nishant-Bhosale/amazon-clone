@@ -32,7 +32,10 @@ const Product = (props) => {
 				<div className="product">
 					<div className="tip">
 						<Link
-							to={{ pathname: "productinfopage", state: { value: props.item } }}
+							to={{
+								pathname: "/productinfopage",
+								state: { value: props.item },
+							}}
 							title="Click to see"
 						>
 							<img
@@ -46,7 +49,9 @@ const Product = (props) => {
 								}}
 							/>
 						</Link>
-						<span>{props.item.title}</span>
+						<span>
+							<div>Click To See More</div> {props.item.title}
+						</span>
 					</div>
 					<ProductInfo
 						item={props.item}
