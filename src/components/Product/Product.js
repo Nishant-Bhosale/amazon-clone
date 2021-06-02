@@ -15,7 +15,6 @@ const Product = (props) => {
 				item,
 			)
 			.then((res) => {
-				console.log(res);
 				setShowPopUpBar(true);
 				setTimeout(() => {
 					setShowPopUpBar(false);

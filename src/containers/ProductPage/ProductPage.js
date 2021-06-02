@@ -1,10 +1,12 @@
 import React from "react";
 import Footer from "../../components/Footer/Footer";
 import ProductImage from "../../components/ProductUI/ProductImage/ProductImage";
+import PostReview from "../../components/Reviews/Reviews";
 import "./ProductPage.css";
 
 const ProductPage = (props) => {
 	const properties = props.location.state.value;
+
 	return (
 		<React.Fragment>
 			<div className="product-page-wrapper">
@@ -28,6 +30,7 @@ const ProductPage = (props) => {
 						<em> Price: $ {properties.price}</em>
 					</div>
 				</h2>
+				<PostReview title={properties.title} />
 			</div>
 			<Footer />
 		</React.Fragment>

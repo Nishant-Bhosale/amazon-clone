@@ -5,12 +5,12 @@ const Footer = () => {
 		<footer className="footer-wrapper">
 			<h1>Contact Me</h1>
 
-			<div class="contacts-container">
+			<div className="contacts-container">
 				<div className="email-info">
 					<h3>Created By: Nishant Bhosale</h3>
 					<p>nishantbhosale244@gmail.com</p>
 				</div>
-				<div class="links-container">
+				<div className="links-container">
 					<a
 						href="https://www.linkedin.com/in/nishant-bhosale-6777241b6"
 						className="links"
