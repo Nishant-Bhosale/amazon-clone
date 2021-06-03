@@ -1,0 +1,46 @@
+.signup-page {
+	height: 100vh;
+	background-color: #ccc;
+	padding: 4rem 0;
+}
+
+.signup-card {
+	margin: 0 auto;
+	background-color: #fff;
+	height: 26rem;
+	border: 2px solid black;
+	width: 24rem;
+}
+
+.signup-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.input-field {
+	width: 15rem;
+	margin: 1rem auto;
+	height: 2.5rem;
+	border-radius: 3px;
+	border: 2px solid black;
+}
+
+.auth-btn {
+	margin: 1rem 0;
+	height: 2.5rem;
+	width: 7rem;
+	color: white;
+	background-color: black;
+	border: white 2px solid;
+	font-size: 1rem;
+	transition: all 0.4s ease-in-out;
+}
+
+.auth-btn:hover {
+	background-color: white;
+	height: 2.7rem;
+	color: black;
+	border: 2px solid black;
+}

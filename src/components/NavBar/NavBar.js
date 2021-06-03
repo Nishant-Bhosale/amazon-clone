@@ -12,7 +12,9 @@ const NavBar = () => {
 					</Link>
 					<div className="navigation-items">
 						<div className="navigation-item">Your Address</div>
-						<div className="navigation-item">Authentication</div>
+						<Link className="navigation-item" to="/authenticate">
+							Authentication
+						</Link>
 						<Link className="navigation-item" to="/mycart">
 							Cart
 						</Link>
