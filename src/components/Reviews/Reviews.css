@@ -1,0 +1,49 @@
+.form-wrapper {
+	width: 63%;
+	background-color: #fff;
+	margin: 3rem auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.review-input-wrapper {
+	margin: 1rem 3rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.review-input {
+	width: 30rem;
+	outline: blue;
+	height: 2.5rem;
+}
+
+.post-review-btn {
+	margin: 1rem 0;
+	height: 2.5rem;
+	width: 7rem;
+	color: white;
+	background-color: black;
+	border: white 2px solid;
+	font-size: 1rem;
+	transition: all 0.4s ease-in-out;
+}
+
+.post-review-btn:hover {
+	background-color: white;
+	height: 2.7rem;
+	color: black;
+	border: 2px solid black;
+}
+
+.review-card {
+	width: 90%;
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}

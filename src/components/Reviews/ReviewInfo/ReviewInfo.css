@@ -1,0 +1,9 @@
+.review-text-wrapper {
+	color: white;
+	background-color: black;
+	width: 150%;
+	margin: 1rem 0;
+	font-size: 1.5rem;
+	padding: 0 1rem;
+	text-align: left;
+}

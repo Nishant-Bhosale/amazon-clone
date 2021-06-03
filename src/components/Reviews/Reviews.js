@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Reviews.css";
 import firebase from "../../utils/firebase";
+import ReviewInfo from "./ReviewInfo/ReviewInfo";
 
 const Reviews = (props) => {
 	const [textReview, setTextReview] = useState("");
@@ -17,7 +18,7 @@ const Reviews = (props) => {
 				arr.push(snap.val().review);
 				setFetchedReviews(arr);
 			});
-	}, [props.title]);
+	}, [props.title, fetchedReviews]);
 
 	const postReview = () => {
 		let rev = { review: textReview, title: props.title };
@@ -29,7 +30,12 @@ const Reviews = (props) => {
 			)
 			.then((res) => {
 				console.log(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
 			});
+
+		setTextReview("");
 	};
 
 	const setReviewText = (e) => {
@@ -39,18 +45,36 @@ const Reviews = (props) => {
 	return (
 		<React.Fragment>
 			<div className="form-wrapper">
-				<div>
-					{fetchedReviews.map((review, index) => {
-						return <h1 key={index}>{review}</h1>;
-					})}
+				<h1 style={{ marginLeft: "3rem", fontSize: "3rem" }}>Reviews</h1>
+				<div className="review-input-wrapper">
+					<span>
+						<input
+							typeof="text"
+							// value={textReview}
+							onChange={(e) => setReviewText(e)}
+							placeholder="Post a review"
+							className="review-input"
+						/>
+					</span>
+
+					<span>
+						<button onClick={() => postReview()} className="post-review-btn">
+							Post Review
+						</button>
+					</span>
+
+					<div className="review-card">
+						<h2>Other Reviews:</h2>
+						{!fetchedReviews.length <= 0 ? (
+							<ReviewInfo reviews={fetchedReviews} />
+						) : (
+							<h2 style={{ textAlign: "left" }}>
+								No Reviews Found for {props.title}
+							</h2>
+						)}
+					</div>
 				</div>
-				<input
-					typeof="text"
-					onChange={(e) => setReviewText(e)}
-					placeholder="Post a review"
-				/>
 			</div>
-			<button onClick={() => postReview()}>Post Review</button>
 		</React.Fragment>
 	);
 };
