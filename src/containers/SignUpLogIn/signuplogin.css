@@ -10,6 +10,7 @@
 	height: 26rem;
 	border: 2px solid black;
 	width: 24rem;
+	border-radius: 17px;
 }
 
 .signup-form {
@@ -23,8 +24,10 @@
 	width: 15rem;
 	margin: 1rem auto;
 	height: 2.5rem;
-	border-radius: 3px;
-	border: 2px solid black;
+	border: 1px solid black;
+	border-top: none;
+	border-right: none;
+	border-left: none;
 }
 
 .auth-btn {
@@ -35,6 +38,7 @@
 	background-color: black;
 	border: white 2px solid;
 	font-size: 1rem;
+	outline: none;
 	transition: all 0.4s ease-in-out;
 }
 
