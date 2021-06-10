@@ -2,20 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 import { connect } from "react-redux";
-import firebase from "../../utils/firebase";
 import StickyNav from "./StickyNav/StickyNav";
 import * as actions from "../../store/actions/actions";
 
 const NavBar = (props) => {
-	// const signOut = () => {
-	// 	firebase
-	// 		.auth()
-	// 		.signOut()
-	// 		.then((res) => {
-	// 			console.log(res);
-	// 		});
-	// };
-
 	return (
 		<React.Fragment>
 			<div>
@@ -26,7 +16,9 @@ const NavBar = (props) => {
 					<div className="navigation-items">
 						<div className="navigation-item">Your Address</div>
 						{props.isAuth ? (
-							<button onClick={props.signUserOut}>SignOut</button>
+							<button onClick={props.signUserOut} className="signout-btn">
+								SignOut
+							</button>
 						) : (
 							<Link className="navigation-item" to="/authenticate">
 								Authentication

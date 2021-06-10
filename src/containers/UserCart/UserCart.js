@@ -13,7 +13,7 @@ const UserCart = (props) => {
 	const [userCart, setUserCart] = useState([]);
 	const [showPopupBar, setShowPopUpBar] = useState(false);
 	const [loading, setLoading] = useState(true);
-	let arr = [];
+
 	useEffect(() => {
 		const dbRef = firebase.database().ref();
 		dbRef
@@ -31,7 +31,6 @@ const UserCart = (props) => {
 					}
 
 					const filteredCart = cart.filter((cartProduct) => {
-						console.log(props.userID === cartProduct.userID);
 						return props.userID === cartProduct.userID;
 					});
 
@@ -41,7 +40,6 @@ const UserCart = (props) => {
 			});
 	}, [props.userID]);
 
-	// setUserCart(arr);
 	if (showPopupBar) {
 		setTimeout(() => {
 			setShowPopUpBar(false);

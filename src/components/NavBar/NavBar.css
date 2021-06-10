@@ -21,9 +21,36 @@
 .navigation-item {
 	text-decoration: none;
 	color: black;
+	transition: all 0.4s ease-in-out;
+	cursor: pointer;
+}
+
+.navigation-item:hover,
+.brand-logo:hover {
+	color: blueviolet;
+	transform: scale(1.3);
 }
 
 .brand-logo {
 	text-decoration: none;
 	color: black;
+	margin-left: 3rem;
+	transition: all 0.3s ease-in-out;
+}
+
+.signout-btn {
+	background-color: black;
+	color: white;
+	height: 2rem;
+	border: none;
+	width: 5rem;
+	font-size: 1rem;
+	transition: all 0.3s ease-in;
+}
+
+.signout-btn:hover {
+	background-color: antiquewhite;
+	color: black;
+	border: 2px solid black;
+	cursor: pointer;
 }

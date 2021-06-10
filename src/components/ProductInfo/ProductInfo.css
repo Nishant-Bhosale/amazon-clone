@@ -20,4 +20,10 @@
 	color: white;
 	border: none;
 	font-size: 1rem;
+	transition: all 0.4s ease-in-out;
+}
+
+.deleteBtn:hover {
+	background: linear-gradient(rgb(76, 181, 207), rgb(105, 211, 105));
+	color: white;
 }

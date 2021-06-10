@@ -9,7 +9,6 @@ const SignUpLogin = (props) => {
 	const [password, setPassword] = useState("");
 	const [isSignUp, setIsSignUp] = useState(true);
 	const [error, setError] = useState(null);
-	const [success, setSuccess] = useState(false);
 
 	const authenticate = (e) => {
 		e.preventDefault();
