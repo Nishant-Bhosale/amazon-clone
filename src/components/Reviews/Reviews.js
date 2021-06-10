@@ -3,6 +3,8 @@ import axios from "axios";
 import "./Reviews.css";
 import firebase from "../../utils/firebase";
 import ReviewInfo from "./ReviewInfo/ReviewInfo";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Reviews = (props) => {
 	const [textReview, setTextReview] = useState("");
@@ -47,21 +49,30 @@ const Reviews = (props) => {
 			<div className="form-wrapper">
 				<h1 style={{ marginLeft: "3rem", fontSize: "3rem" }}>Reviews</h1>
 				<div className="review-input-wrapper">
-					<span>
-						<input
-							typeof="text"
-							// value={textReview}
-							onChange={(e) => setReviewText(e)}
-							placeholder="Post a review"
-							className="review-input"
-						/>
-					</span>
+					{props.isAuth ? (
+						<div>
+							<span>
+								<input
+									typeof="text"
+									// value={textReview}
+									onChange={(e) => setReviewText(e)}
+									placeholder="Post a review"
+									className="review-input"
+								/>
+							</span>
 
-					<span>
-						<button onClick={() => postReview()} className="post-review-btn">
-							Post Review
-						</button>
-					</span>
+							<span>
+								<button
+									onClick={() => postReview()}
+									className="post-review-btn"
+								>
+									Post Review
+								</button>
+							</span>
+						</div>
+					) : (
+						<Link to="/authenticate">SIGN IN OR SIGN UP TO POST A REVIEW!</Link>
+					)}
 
 					<div className="review-card">
 						<h2>Other Reviews:</h2>
@@ -79,4 +90,10 @@ const Reviews = (props) => {
 	);
 };
 
-export default Reviews;
+const mapStateToProps = (state) => {
+	return {
+		isAuth: state.userID !== null,
+	};
+};
+
+export default connect(mapStateToProps)(Reviews);

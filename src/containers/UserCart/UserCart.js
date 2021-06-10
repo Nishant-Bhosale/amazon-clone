@@ -4,32 +4,44 @@ import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
 import PopupBar from "../../components/PopupBar/PopupBar";
 import firebase from "../../utils/firebase";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "./UserCart.css";
 import Footer from "../../components/Footer/Footer";
 import Spinner from "../../components/Spinner/Spinner";
+import { connect } from "react-redux";
 
-const UserCart = () => {
+const UserCart = (props) => {
 	const [userCart, setUserCart] = useState([]);
 	const [showPopupBar, setShowPopUpBar] = useState(false);
 	const [loading, setLoading] = useState(true);
-
+	let arr = [];
 	useEffect(() => {
-		axios
-			.get("https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/cart.json")
-			.then((res) => {
-				const cart = [];
-				for (let key in res.data) {
-					cart.push({
-						...res.data[key],
-						id: key,
-					});
-				}
-				setLoading(false);
-				setUserCart(cart);
-			});
-	}, []);
+		const dbRef = firebase.database().ref();
+		dbRef
+			.child("cart")
+			.get()
+			.then((snapshot) => {
+				if (snapshot.exists()) {
+					const cart = [];
 
+					for (let key in snapshot.val()) {
+						cart.push({
+							...snapshot.val()[key],
+							id: key,
+						});
+					}
+
+					const filteredCart = cart.filter((cartProduct) => {
+						console.log(props.userID === cartProduct.userID);
+						return props.userID === cartProduct.userID;
+					});
+
+					setLoading(false);
+					setUserCart(filteredCart);
+				}
+			});
+	}, [props.userID]);
+
+	// setUserCart(arr);
 	if (showPopupBar) {
 		setTimeout(() => {
 			setShowPopUpBar(false);
@@ -47,6 +59,7 @@ const UserCart = () => {
 		});
 		setShowPopUpBar(true);
 	};
+
 	let popUpBar = <PopupBar fail={true}>Item removed Successfully</PopupBar>;
 
 	let productOnCartPage = (
@@ -71,7 +84,9 @@ const UserCart = () => {
 	);
 	return (
 		<React.Fragment>
-			{loading ? (
+			{!props.isAuth ? (
+				<h1>Authenticate Yourself!</h1>
+			) : loading ? (
 				<Spinner />
 			) : userCart.length <= 0 ? (
 				<div className="background">
@@ -79,7 +94,7 @@ const UserCart = () => {
 						NO ITEMS FOUND IN YOUR CART
 					</h1>
 					<Link to="/">
-						<p>Start Adding Item?</p>
+						<p>Start Adding Products?</p>
 					</Link>
 				</div>
 			) : (
@@ -90,4 +105,11 @@ const UserCart = () => {
 	);
 };
 
-export default UserCart;
+const mapStateToProps = (state) => {
+	return {
+		userID: state.userID,
+		isAuth: state.userID !== null,
+	};
+};
+
+export default connect(mapStateToProps)(UserCart);

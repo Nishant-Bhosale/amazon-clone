@@ -1,51 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./signuplogin.css";
-import firebase from "../../utils/firebase";
 import PopupBar from "../../components/PopupBar/PopupBar";
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/actions";
 
-const SignUpLogin = () => {
+const SignUpLogin = (props) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [isSignUp, setIsSignUp] = useState(true);
 	const [error, setError] = useState(null);
 	const [success, setSuccess] = useState(false);
-	useEffect(() => {
-		firebase.auth().onAuthStateChanged(function (user) {
-			if (user) {
-				console.log("i am here");
-				console.log(user);
-			} else {
-				console.log("not here");
-			}
-		});
-	}, []);
 
 	const authenticate = (e) => {
 		e.preventDefault();
-		console.log("hiiiiiii");
-		if (isSignUp) {
-			firebase
-				.auth()
-				.createUserWithEmailAndPassword(email, password)
-				.then((userCredentials) => {
-					console.log(userCredentials.user);
-				})
-				.catch((err) => {
-					setError("Email is already taken by someone else.");
-				});
-		} else {
-			firebase
-				.auth()
-				.signInWithEmailAndPassword(email, password)
-				.then((userCredentials) => {
-					console.log(userCredentials.user);
-					setSuccess(true);
-				})
-				.catch((err) => {
-					console.log(err);
-					setError(err.message);
-				});
-		}
+		props.authenticateUser(email, password, isSignUp);
 	};
 
 	const changeAuthState = (e) => {
@@ -54,19 +22,6 @@ const SignUpLogin = () => {
 			return !prevState;
 		});
 	};
-
-	// const signOut = (e) => {
-	// 	e.preventDefault();
-	// 	firebase
-	// 		.auth()
-	// 		.signOut()
-	// 		.then((res) => {
-	// 			console.log(res);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(error);
-	// 		});
-	// };
 
 	const onChangeHandler = (e) => {
 		e.preventDefault();
@@ -78,20 +33,24 @@ const SignUpLogin = () => {
 		}
 	};
 
-	if (error) {
+	if (props.error) {
+		console.log(props.error);
 		setTimeout(() => {
 			setError(null);
 		}, 5000);
-	} else if (success) {
+	} else if (props.success) {
 		setTimeout(() => {
-			setSuccess(false);
+			props.setSuccessState();
 		}, 3000);
 	}
 
 	return (
 		<div className="signup-page">
-			{success ? (
-				<PopupBar success={success}>Logged In Successfully.</PopupBar>
+			{props.success ? (
+				<div>
+					{/* <Redirect to="/" /> */}
+					<PopupBar success={props.success}>Logged In Successfully.</PopupBar>
+				</div>
 			) : null}
 			<div className="signup-card">
 				<form className="signup-form" onSubmit={(e) => authenticate(e)}>
@@ -104,7 +63,7 @@ const SignUpLogin = () => {
 						name="email"
 						onChange={(e) => onChangeHandler(e)}
 					/>
-					{error ? <p style={{ color: "red" }}>{error}</p> : null}
+					{props.error ? <p style={{ color: "red" }}>{props.error}</p> : null}
 					<input
 						type="password"
 						placeholder="Enter Your Password"
@@ -123,5 +82,19 @@ const SignUpLogin = () => {
 		</div>
 	);
 };
+const mapStateToProps = (state) => {
+	return {
+		error: state.error,
+		success: state.success,
+	};
+};
 
-export default SignUpLogin;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		authenticateUser: (email, password, isSignUp) =>
+			dispatch(actions.auth(email, password, isSignUp)),
+		setSuccessState: () => dispatch(actions.setAuthSuccessState()),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpLogin);

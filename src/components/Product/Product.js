@@ -3,26 +3,47 @@ import ProductInfo from "../ProductInfo/ProductInfo";
 import PopupBar from "../PopupBar/PopupBar";
 import Zoom from "react-reveal/Zoom";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import axios from "axios";
 import "./Product.css";
 
 const Product = (props) => {
 	const [showPopupBar, setShowPopUpBar] = useState(false);
-	const postItemToCart = (item) => {
-		axios
-			.post(
-				"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/cart.json",
-				item,
-			)
-			.then((res) => {
-				setShowPopUpBar(true);
-				setTimeout(() => {
-					setShowPopUpBar(false);
-				}, 2000);
-			});
+	const [error, setError] = useState(null);
+
+	const postItemToCart = (item, userID) => {
+		if (props.userID !== null) {
+			const newProduct = { ...item, userID };
+			axios
+				.post(
+					"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/cart.json",
+					newProduct,
+				)
+				.then((res) => {
+					setError(false);
+					setShowPopUpBar(true);
+				})
+				.catch((err) => {
+					setShowPopUpBar(true);
+					setError(true);
+				});
+		}
 	};
 
-	let popUpBar = <PopupBar>PRODUCT ADDED SUCCESSFULLY</PopupBar>;
+	let popUpBar = (
+		<PopupBar success={true}>
+			{error
+				? "PRODUCT NOT ADDED. SOMETHING WENT WRONG. TRY AGAIN"
+				: "PRODUCT ADDED SUCCESSFULLY"}{" "}
+		</PopupBar>
+	);
+
+	if (showPopupBar) {
+		setTimeout(() => {
+			setShowPopUpBar(false);
+		}, 2000);
+	}
+
 	return (
 		<React.Fragment>
 			{showPopupBar ? popUpBar : null}
@@ -54,7 +75,7 @@ const Product = (props) => {
 					</div>
 					<ProductInfo
 						item={props.item}
-						addItemToCart={() => postItemToCart(props.item)}
+						addItemToCart={() => postItemToCart(props.item, props.userID)}
 						showIcon={true}
 					/>
 				</div>
@@ -63,4 +84,9 @@ const Product = (props) => {
 	);
 };
 
-export default Product;
+const mapStateToProps = (state) => {
+	return {
+		userID: state.userID,
+	};
+};
+export default connect(mapStateToProps)(Product);

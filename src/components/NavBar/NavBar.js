@@ -1,8 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
+import { connect } from "react-redux";
+import firebase from "../../utils/firebase";
 import StickyNav from "./StickyNav/StickyNav";
-const NavBar = () => {
+import * as actions from "../../store/actions/actions";
+
+const NavBar = (props) => {
+	// const signOut = () => {
+	// 	firebase
+	// 		.auth()
+	// 		.signOut()
+	// 		.then((res) => {
+	// 			console.log(res);
+	// 		});
+	// };
+
 	return (
 		<React.Fragment>
 			<div>
@@ -12,9 +25,14 @@ const NavBar = () => {
 					</Link>
 					<div className="navigation-items">
 						<div className="navigation-item">Your Address</div>
-						<Link className="navigation-item" to="/authenticate">
-							Authentication
-						</Link>
+						{props.isAuth ? (
+							<button onClick={props.signUserOut}>SignOut</button>
+						) : (
+							<Link className="navigation-item" to="/authenticate">
+								Authentication
+							</Link>
+						)}
+
 						<Link className="navigation-item" to="/mycart">
 							Cart
 						</Link>
@@ -26,4 +44,15 @@ const NavBar = () => {
 	);
 };
 
-export default NavBar;
+const mapStateToProps = (state) => {
+	return {
+		isAuth: state.userID !== null,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		signUserOut: () => dispatch(actions.signOut()),
+	};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
