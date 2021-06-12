@@ -7,12 +7,13 @@ import * as actions from "../../store/actions/actions";
 const SignUpLogin = (props) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [name, setName] = useState("");
 	const [isSignUp, setIsSignUp] = useState(true);
 	const [error, setError] = useState(null);
 
 	const authenticate = (e) => {
 		e.preventDefault();
-		props.authenticateUser(email, password, isSignUp);
+		props.authenticateUser(email, password, isSignUp, name);
 	};
 
 	const changeAuthState = (e) => {
@@ -29,6 +30,8 @@ const SignUpLogin = (props) => {
 			setEmail(value);
 		} else if (name === "Password") {
 			setPassword(value);
+		} else if (name === "display-name") {
+			setName(value);
 		}
 	};
 
@@ -54,6 +57,15 @@ const SignUpLogin = (props) => {
 			<div className="signup-card">
 				<form className="signup-form" onSubmit={(e) => authenticate(e)}>
 					<h1>{isSignUp ? "Sign Up" : "Log In"}</h1>
+					{isSignUp ? (
+						<input
+							type="text"
+							placeholder="Enter Your Name"
+							className="input-field"
+							name="display-name"
+							onChange={(e) => onChangeHandler(e)}
+						/>
+					) : null}
 
 					<input
 						type="email"
@@ -85,13 +97,14 @@ const mapStateToProps = (state) => {
 	return {
 		error: state.error,
 		success: state.success,
+		userID: state.userID,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		authenticateUser: (email, password, isSignUp) =>
-			dispatch(actions.auth(email, password, isSignUp)),
+		authenticateUser: (email, password, isSignUp, name) =>
+			dispatch(actions.auth(email, password, isSignUp, name)),
 		setSuccessState: () => dispatch(actions.setAuthSuccessState()),
 	};
 };

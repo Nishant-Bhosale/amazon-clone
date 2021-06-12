@@ -23,11 +23,13 @@ function MainPage() {
 	}, []);
 
 	return (
-		<div>
-			<Banner />
-			{loading ? <Spinner /> : <ProductContainer products={items} />}
+		<React.Fragment>
+			<div>
+				<Banner />
+				{loading ? <Spinner /> : <ProductContainer products={items} />}
+			</div>
 			<Footer />
-		</div>
+		</React.Fragment>
 	);
 }
 

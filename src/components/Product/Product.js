@@ -34,7 +34,7 @@ const Product = (props) => {
 		<PopupBar success={true}>
 			{error
 				? "PRODUCT NOT ADDED. SOMETHING WENT WRONG. TRY AGAIN"
-				: "PRODUCT ADDED SUCCESSFULLY"}{" "}
+				: "PRODUCT ADDED SUCCESSFULLY"}
 		</PopupBar>
 	);
 

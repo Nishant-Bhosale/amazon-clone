@@ -1,0 +1,23 @@
+.modal {
+	height: 200px;
+	width: 700px;
+	margin: 3rem auto;
+	position: fixed;
+	top: 2.1rem;
+	left: 12%;
+	z-index: 500;
+	transition: all 0.7s ease-out;
+	background-color: red;
+	animation: modalAnimation 1s forwards;
+}
+
+@keyframes modalAnimation {
+	0% {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0%);
+		opacity: 1;
+	}
+}

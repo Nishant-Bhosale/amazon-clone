@@ -69,21 +69,24 @@ const UserCart = (props) => {
 			</h1>
 			{userCart.map((cartItem) => {
 				return (
-					<div key={cartItem.id} className="category-product-wrapper">
-						<CategoryProduct
-							item={cartItem}
-							toShow={false}
-							clicked={() => removeProductFromCart(cartItem.id)}
-						/>
-					</div>
+					<React.Fragment>
+						<div key={cartItem.id} className="category-product-wrapper">
+							<CategoryProduct
+								item={cartItem}
+								toShow={false}
+								clicked={() => removeProductFromCart(cartItem.id)}
+							/>
+						</div>
+					</React.Fragment>
 				);
 			})}
+			<Footer />
 		</div>
 	);
 	return (
 		<React.Fragment>
 			{!props.isAuth ? (
-				<h1>Authenticate Yourself!</h1>
+				<h1>Please Login to See Your Cart!</h1>
 			) : loading ? (
 				<Spinner />
 			) : userCart.length <= 0 ? (
@@ -96,9 +99,11 @@ const UserCart = (props) => {
 					</Link>
 				</div>
 			) : (
-				productOnCartPage
+				<div>
+					productOnCartPage
+					<button>Proceed to Checkout</button>
+				</div>
 			)}
-			<Footer />
 		</React.Fragment>
 	);
 };

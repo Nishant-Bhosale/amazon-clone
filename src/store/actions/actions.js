@@ -40,7 +40,7 @@ export const signOut = () => {
 	};
 };
 
-export const auth = (email, password, isSignUp) => {
+export const auth = (email, password, isSignUp, name) => {
 	return (dispatch) => {
 		dispatch(authStart());
 		if (isSignUp) {
@@ -48,9 +48,11 @@ export const auth = (email, password, isSignUp) => {
 				.auth()
 				.createUserWithEmailAndPassword(email, password)
 				.then((userCredentials) => {
-					console.log(userCredentials.uid);
-
-					dispatch(authSuccess(userCredentials.uid));
+					console.log(userCredentials);
+					dispatch(authSuccess(userCredentials.uid, name));
+					return userCredentials.user.updateProfile({
+						displayName: name,
+					});
 				})
 				.catch((error) => {
 					dispatch(authFail(error.message));
@@ -61,8 +63,10 @@ export const auth = (email, password, isSignUp) => {
 				.auth()
 				.signInWithEmailAndPassword(email, password)
 				.then((userCredentials) => {
-					console.log(userCredentials.user);
-					dispatch(authSuccess(userCredentials.user.uid));
+					console.log(userCredentials);
+					dispatch(
+						authSuccess(userCredentials.user.uid, userCredentials.displayName),
+					);
 				})
 				.catch((error) => {
 					console.log(error);

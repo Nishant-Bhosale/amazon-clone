@@ -1,12 +1,14 @@
 .footer-wrapper {
 	background-color: black;
-	/* height: 6rem; */
+	height: 15rem;
 	color: white;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	position: relative;
+	position: absolute;
+	right: 0;
+	left: 0;
 }
 
 .contacts-container {

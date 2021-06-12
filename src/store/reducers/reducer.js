@@ -3,6 +3,7 @@ const initialState = {
 	error: null,
 	loading: false,
 	success: false,
+	userName: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,6 +19,7 @@ const reducer = (state = initialState, action) => {
 				userID: action.userID,
 				error: null,
 				success: true,
+				userName: action.name,
 			};
 		case "AUTH_FAIL":
 			return {
