@@ -17,26 +17,22 @@ const Reviews = (props) => {
 			.orderByChild("title")
 			.equalTo(props.title)
 			.on("child_added", (snap) => {
-				arr.push(snap.val().review);
+				arr.push(snap.val());
 				setFetchedReviews(arr);
 			});
-	}, [props.title, fetchedReviews]);
+	}, [props.title]);
 
 	const postReview = () => {
-		let rev = { review: textReview, title: props.title };
+		let rev = {
+			review: textReview,
+			title: props.title,
+			displayName: props.name,
+		};
 
-		axios
-			.post(
-				"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/reviews.json",
-				rev,
-			)
-			.then((res) => {
-				console.log(res.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-
+		axios.post(
+			"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/reviews.json",
+			rev,
+		);
 		setTextReview("");
 	};
 
@@ -54,9 +50,9 @@ const Reviews = (props) => {
 							<span>
 								<input
 									typeof="text"
-									// value={textReview}
 									onChange={(e) => setReviewText(e)}
 									placeholder="Post a review"
+									required
 									className="review-input"
 								/>
 							</span>
@@ -93,6 +89,7 @@ const Reviews = (props) => {
 const mapStateToProps = (state) => {
 	return {
 		isAuth: state.userID !== null,
+		name: state.userName,
 	};
 };
 

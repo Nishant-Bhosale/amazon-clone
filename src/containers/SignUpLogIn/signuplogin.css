@@ -7,7 +7,7 @@
 .signup-card {
 	margin: 0 auto;
 	background-color: #fff;
-	height: 26rem;
+	/* height: 26rem; */
 	border: 2px solid black;
 	width: 24rem;
 	border-radius: 17px;
@@ -32,7 +32,7 @@
 
 .auth-btn {
 	margin: 1rem 0;
-	height: 2.5rem;
+	height: 3rem;
 	width: 7rem;
 	color: white;
 	background-color: black;

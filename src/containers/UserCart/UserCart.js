@@ -100,7 +100,7 @@ const UserCart = (props) => {
 				</div>
 			) : (
 				<div>
-					productOnCartPage
+					{productOnCartPage}
 					<button>Proceed to Checkout</button>
 				</div>
 			)}

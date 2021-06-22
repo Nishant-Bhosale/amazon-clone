@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./signuplogin.css";
-import PopupBar from "../../components/PopupBar/PopupBar";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/actions";
 
@@ -9,7 +8,6 @@ const SignUpLogin = (props) => {
 	const [password, setPassword] = useState("");
 	const [name, setName] = useState("");
 	const [isSignUp, setIsSignUp] = useState(true);
-	const [error, setError] = useState(null);
 
 	const authenticate = (e) => {
 		e.preventDefault();
@@ -35,12 +33,7 @@ const SignUpLogin = (props) => {
 		}
 	};
 
-	if (props.error) {
-		console.log(props.error);
-		setTimeout(() => {
-			setError(null);
-		}, 5000);
-	} else if (props.success) {
+	if (props.success) {
 		setTimeout(() => {
 			props.setSuccessState();
 		}, 3000);
@@ -48,12 +41,7 @@ const SignUpLogin = (props) => {
 
 	return (
 		<div className="signup-page">
-			{props.success ? (
-				<div>
-					{/* <Redirect to="/" /> */}
-					<PopupBar success={props.success}>Logged In Successfully.</PopupBar>
-				</div>
-			) : null}
+			{props.success ? <div>{props.history.push("/")}</div> : null}
 			<div className="signup-card">
 				<form className="signup-form" onSubmit={(e) => authenticate(e)}>
 					<h1>{isSignUp ? "Sign Up" : "Log In"}</h1>
@@ -63,6 +51,7 @@ const SignUpLogin = (props) => {
 							placeholder="Enter Your Name"
 							className="input-field"
 							name="display-name"
+							required
 							onChange={(e) => onChangeHandler(e)}
 						/>
 					) : null}
@@ -71,6 +60,7 @@ const SignUpLogin = (props) => {
 						type="email"
 						placeholder="Enter Your Email"
 						className="input-field"
+						required
 						name="email"
 						onChange={(e) => onChangeHandler(e)}
 					/>
@@ -80,6 +70,8 @@ const SignUpLogin = (props) => {
 						placeholder="Enter Your Password"
 						className="input-field"
 						name="Password"
+						required
+						minLength="7"
 						onChange={(e) => onChangeHandler(e)}
 					/>
 					<button className="auth-btn">

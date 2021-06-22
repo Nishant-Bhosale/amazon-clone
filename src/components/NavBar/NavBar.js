@@ -17,11 +17,11 @@ const NavBar = (props) => {
 						<div className="navigation-item">Your Address</div>
 						{props.isAuth ? (
 							<button onClick={props.signUserOut} className="signout-btn">
-								SignOut
+								LogOut
 							</button>
 						) : (
 							<Link className="navigation-item" to="/authenticate">
-								Authentication
+								SignUp/Login
 							</Link>
 						)}
 

@@ -13,10 +13,11 @@ export const authFail = (message) => {
 	};
 };
 
-export const authSuccess = (userID) => {
+export const authSuccess = (userID, name) => {
 	return {
 		type: "AUTH_SUCCESS",
 		userID: userID,
+		name: name,
 	};
 };
 
@@ -48,15 +49,14 @@ export const auth = (email, password, isSignUp, name) => {
 				.auth()
 				.createUserWithEmailAndPassword(email, password)
 				.then((userCredentials) => {
-					console.log(userCredentials);
 					dispatch(authSuccess(userCredentials.uid, name));
+
 					return userCredentials.user.updateProfile({
 						displayName: name,
 					});
 				})
 				.catch((error) => {
 					dispatch(authFail(error.message));
-					console.log(error);
 				});
 		} else {
 			firebase
@@ -69,7 +69,6 @@ export const auth = (email, password, isSignUp, name) => {
 					);
 				})
 				.catch((error) => {
-					console.log(error);
 					dispatch(authFail(error.message));
 				});
 		}
