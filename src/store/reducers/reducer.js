@@ -1,4 +1,5 @@
 const initialState = {
+	token: null,
 	userID: null,
 	error: null,
 	loading: true,
@@ -15,6 +16,7 @@ const reducer = (state = initialState, action) => {
 			};
 		case "AUTH_SUCCESS":
 			return {
+				token: action.token,
 				loading: false,
 				userID: action.userID,
 				error: null,
@@ -24,14 +26,18 @@ const reducer = (state = initialState, action) => {
 		case "AUTH_FAIL":
 			return {
 				...state,
+				token: null,
 				loading: false,
 				success: false,
 				error: action.errorMessage,
+				userName: null,
 			};
 		case "SIGN_OUT":
 			return {
 				...state,
 				userID: null,
+				token: null,
+				userName: null,
 			};
 		case "SET_SUCCESS":
 			return {

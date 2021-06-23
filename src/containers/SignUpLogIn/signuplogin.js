@@ -33,12 +33,6 @@ const SignUpLogin = (props) => {
 		}
 	};
 
-	if (props.success) {
-		setTimeout(() => {
-			props.setSuccessState();
-		}, 3000);
-	}
-
 	return (
 		<div className="signup-page">
 			{props.success ? <div>{props.history.push("/")}</div> : null}

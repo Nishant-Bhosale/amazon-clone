@@ -13,11 +13,12 @@ export const authFail = (message) => {
 	};
 };
 
-export const authSuccess = (userID, name) => {
+export const authSuccess = (userID, name, token) => {
 	return {
 		type: "AUTH_SUCCESS",
 		userID: userID,
 		name: name,
+		token: token,
 	};
 };
 
@@ -36,7 +37,7 @@ export const setAuthSuccessState = () => {
 export const signOut = () => {
 	return (dispatch) => {
 		dispatch(signOutHandler());
-		console.log("singjsofj");
+		localStorage.removeItem("token");
 		firebase.auth().signOut();
 	};
 };
@@ -49,7 +50,11 @@ export const auth = (email, password, isSignUp, name) => {
 				.auth()
 				.createUserWithEmailAndPassword(email, password)
 				.then((userCredentials) => {
-					dispatch(authSuccess(userCredentials.uid, name));
+					// console.log(userCredentials);
+					const { user } = userCredentials;
+					dispatch(authSuccess(user.uid, name, user.za));
+
+					localStorage.setItem("token", user.za);
 
 					return userCredentials.user.updateProfile({
 						displayName: name,
@@ -63,14 +68,24 @@ export const auth = (email, password, isSignUp, name) => {
 				.auth()
 				.signInWithEmailAndPassword(email, password)
 				.then((userCredentials) => {
-					console.log(userCredentials);
-					dispatch(
-						authSuccess(userCredentials.user.uid, userCredentials.displayName),
-					);
+					// console.log(userCredentials);
+					const { user } = userCredentials;
+					if (localStorage.getItem("token") === null) {
+						localStorage.setItem("token", user.za);
+					}
+					dispatch(authSuccess(user.uid, user.displayName, user.za));
 				})
 				.catch((error) => {
 					dispatch(authFail(error.message));
 				});
+
+			// firebase.auth().onAuthStateChanged((user) => {
+			// 	if (user) {
+			// 		user.getIdToken().then((res) => {
+			// 			console.log(res);
+			// 		});
+			// 	}
+			// });
 		}
 	};
 };

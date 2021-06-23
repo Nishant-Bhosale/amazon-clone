@@ -29,6 +29,7 @@ const Reviews = (props) => {
 			displayName: props.name,
 		};
 
+		console.log(props);
 		axios.post(
 			"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/reviews.json",
 			rev,
