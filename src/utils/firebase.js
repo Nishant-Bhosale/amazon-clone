@@ -11,7 +11,9 @@ var firebaseConfig = {
 	measurementId: "G-ND9G20VY9Y",
 };
 // Initialize Firebase
+
 firebase.initializeApp(firebaseConfig);
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 firebase.analytics();
 
 export default firebase;

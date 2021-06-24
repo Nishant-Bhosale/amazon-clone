@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCategoryPage from "./containers/ProductCategoryPage/ProductCategoryPage";
+import ProductPage from "./containers/ProductPage/ProductPage";
+import SignUpLogin from "./containers/SignUpLogIn/signuplogin";
 import MainPage from "./containers/MainPage/MainPage";
 import UserCart from "./containers/UserCart/UserCart";
-import ProductPage from "./containers/ProductPage/ProductPage";
 import { Route, Switch } from "react-router-dom";
+import firebase from "./utils/firebase";
+import { connect } from "react-redux";
+import * as actions from "./store/actions/actions";
 import NavBar from "./components/NavBar/NavBar";
 import "./App.css";
-import SignUpLogin from "./containers/SignUpLogIn/signuplogin";
-function App() {
+
+const App = (props) => {
+	useEffect(() => {
+		firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				props.authSuccess(user.uid, user.displayName, user.za);
+			}
+		});
+	}, [props]);
+
 	return (
 		<div className="App">
 			<NavBar />
@@ -21,6 +33,19 @@ function App() {
 			</Switch>
 		</div>
 	);
-}
+};
 
-export default App;
+const mapStateToProps = (state) => {
+	return {
+		isAuth: state.token !== null,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		authSuccess: (id, name, token) =>
+			dispatch(actions.authSuccess(id, name, token)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
