@@ -9,6 +9,7 @@ import firebase from "./utils/firebase";
 import { connect } from "react-redux";
 import * as actions from "./store/actions/actions";
 import NavBar from "./components/NavBar/NavBar";
+import AddressPage from "./containers/AddressPage/AddressPage";
 import "./App.css";
 
 const App = (props) => {
@@ -29,6 +30,7 @@ const App = (props) => {
 				<Route path="/category" component={ProductCategoryPage} />
 				<Route path="/mycart" component={UserCart} />
 				<Route path="/productinfopage" component={ProductPage} />
+				<Route path="/address" component={AddressPage} />
 				{/* <Route component={Error} /> */}
 			</Switch>
 		</div>

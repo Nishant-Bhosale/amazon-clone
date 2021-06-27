@@ -5,12 +5,10 @@
 }
 
 .signup-card {
-	margin: 0 auto;
+	margin: 3rem auto;
 	background-color: #fff;
-	/* height: 26rem; */
 	border: 2px solid black;
 	width: 24rem;
-	border-radius: 17px;
 }
 
 .signup-form {
@@ -20,20 +18,10 @@
 	justify-content: center;
 }
 
-.input-field {
-	width: 15rem;
-	margin: 1rem auto;
-	height: 2.5rem;
-	border: 1px solid black;
-	border-top: none;
-	border-right: none;
-	border-left: none;
-}
-
 .auth-btn {
 	margin: 1rem 0;
 	height: 3rem;
-	width: 7rem;
+	width: 9rem;
 	color: white;
 	background-color: black;
 	border: white 2px solid;
@@ -44,7 +32,6 @@
 
 .auth-btn:hover {
 	background-color: white;
-	height: 2.7rem;
 	color: black;
 	border: 2px solid black;
 }

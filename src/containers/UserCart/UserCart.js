@@ -101,7 +101,7 @@ const UserCart = (props) => {
 			) : (
 				<div>
 					{productOnCartPage}
-					<button>Proceed to Checkout</button>
+					<Link to="/address">Place Order</Link>
 				</div>
 			)}
 		</React.Fragment>

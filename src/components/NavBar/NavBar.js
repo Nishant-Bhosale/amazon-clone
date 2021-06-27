@@ -14,7 +14,9 @@ const NavBar = (props) => {
 						Amazon
 					</Link>
 					<div className="navigation-items">
-						<div className="navigation-item">Your Address</div>
+						<Link className="navigation-item" to="/address">
+							Your Address
+						</Link>
 						{props.isAuth ? (
 							<button onClick={props.signUserOut} className="signout-btn">
 								LogOut

@@ -34,40 +34,45 @@ const SignUpLogin = (props) => {
 	};
 
 	return (
-		<div className="signup-page">
+		<div className="container">
 			{props.success ? <div>{props.history.push("/")}</div> : null}
 			<div className="signup-card">
 				<form className="signup-form" onSubmit={(e) => authenticate(e)}>
 					<h1>{isSignUp ? "Sign Up" : "Log In"}</h1>
 					{isSignUp ? (
+						<div className="form-group">
+							<input
+								type="text"
+								placeholder="Enter Your Name"
+								className="input-field"
+								name="display-name"
+								required
+								onChange={(e) => onChangeHandler(e)}
+							/>
+						</div>
+					) : null}
+					<div>
 						<input
-							type="text"
-							placeholder="Enter Your Name"
+							type="email"
+							placeholder="Enter Your Email"
 							className="input-field"
-							name="display-name"
 							required
+							name="email"
 							onChange={(e) => onChangeHandler(e)}
 						/>
-					) : null}
-
-					<input
-						type="email"
-						placeholder="Enter Your Email"
-						className="input-field"
-						required
-						name="email"
-						onChange={(e) => onChangeHandler(e)}
-					/>
+					</div>
 					{props.error ? <p style={{ color: "red" }}>{props.error}</p> : null}
-					<input
-						type="password"
-						placeholder="Enter Your Password"
-						className="input-field"
-						name="Password"
-						required
-						minLength="7"
-						onChange={(e) => onChangeHandler(e)}
-					/>
+					<div>
+						<input
+							type="password"
+							placeholder="Enter Your Password"
+							className="input-field"
+							name="Password"
+							required
+							minLength="7"
+							onChange={(e) => onChangeHandler(e)}
+						/>
+					</div>
 					<button className="auth-btn">
 						{isSignUp ? "Sign Up" : "Log In"}
 					</button>
