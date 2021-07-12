@@ -14,8 +14,8 @@
 
 .deleteBtn {
 	height: 2.3rem;
-	width: 7rem;
-	border-radius: 5px;
+	padding: 0.25rem 0.1;
+	width: 10rem;
 	background-color: red;
 	color: white;
 	border: none;
@@ -24,6 +24,8 @@
 }
 
 .deleteBtn:hover {
-	background: linear-gradient(rgb(76, 181, 207), rgb(105, 211, 105));
-	color: white;
+	background-color: transparent;
+	transform: scale(1.2);
+	color: black;
+	border: 2px solid black;
 }

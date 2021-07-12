@@ -3,14 +3,13 @@
 	top: 6rem;
 	margin: auto;
 	left: 37rem;
-	height: 4rem;
+	height: 9rem;
 	width: 15rem;
 	padding: 2rem;
 	z-index: 9000;
 	border: 2px solid rgb(1, 71, 42);
 	font-size: 1.3rem;
 	color: white;
-
 	display: grid;
 	place-items: center;
 	transition: all 0.5s ease-in-out;

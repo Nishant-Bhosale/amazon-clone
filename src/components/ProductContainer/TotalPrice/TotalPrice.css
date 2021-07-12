@@ -7,9 +7,10 @@
 	place-items: center;
 	position: fixed;
 	margin-top: 3rem;
-	border: 2px solid black;
+	/* border: 2px solid black; */
 	box-shadow: 3px 5px 7px rgb(0, 183, 255);
 	font-size: 1.1rem;
+	z-index: 100000;
 	left: 0.5rem;
 	animation: move 1s ease-in-out infinite;
 	animation-direction: alternate;
@@ -20,6 +21,6 @@
 		transform: translateY(0);
 	}
 	to {
-		transform: translateY(3rem);
+		transform: translateY(1rem);
 	}
 }
