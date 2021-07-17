@@ -7,18 +7,13 @@
 	justify-content: center;
 	background-color: white;
 	align-items: center;
-	/* border: 2px solid black; */
-	position: relative;
 	padding-top: 1rem;
-	bottom: 7rem;
-	z-index: 1000;
 	margin: 0 auto;
 	transition: all 0.4s ease-in-out;
-	/* border-radius: 15px; */
 }
 
 .product:hover {
-	transform: translateY(-40px);
+	transform: translateY(-25px);
 	box-shadow: 4px 7px 7px #ccc;
 }
 

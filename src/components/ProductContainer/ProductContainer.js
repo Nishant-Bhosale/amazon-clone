@@ -3,13 +3,12 @@ import Product from "../Product/Product";
 import "./ProductContainer.css";
 
 const ProductContainer = (props) => {
+	let arr = ["product-container"];
+
+	if (props.onCategoryPage) arr.push("oncategory-page");
+
 	return (
-		<div className="product-container">
-			<img
-				src={`${process.env.PUBLIC_URL}/images/black-background.jpg`}
-				alt=""
-				className="img"
-			/>
+		<div className={arr.join(" ")}>
 			{props.products.map((product) => {
 				return <Product key={product.id} item={product} />;
 			})}

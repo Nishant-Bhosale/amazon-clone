@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
-import "./ProductCategoryPage.css";
+import Product from "../../components/Product/Product";
+import ProductContainer from "../../components/ProductContainer/ProductContainer";
 import axios from "axios";
 import Spinner from "../../components/Spinner/Spinner";
 
@@ -23,23 +23,32 @@ const ProductCategoryPage = (props) => {
 
 	return (
 		<React.Fragment>
-			{loading ? (
-				<Spinner />
-			) : (
-				<div className="product-category-page">
-					<div className="wrapper">
-						{products.map((product) => {
-							return (
-								<CategoryProduct
-									key={product.id}
-									item={product}
-									toShow={true}
-								/>
-							);
-						})}
-					</div>
-				</div>
-			)}
+			{
+				loading ? (
+					<Spinner />
+				) : (
+					// (
+					// 	<div className="product-category-page">
+					// 		<div className="wrapper">
+					// 			{products.map((product) => {
+					// 				return (
+					// 					<CategoryProduct
+					// 						key={product.id}
+					// 						item={product}
+					// 						toShow={true}
+					// 					/>
+					// 				);
+					// 			})}
+					// 		</div>
+					// 	</div>
+					// )
+					<React.Fragment>
+						<ProductContainer products={products} onCategoryPage={true} />
+					</React.Fragment>
+				)
+
+				// </ProductContainer>
+			}
 		</React.Fragment>
 	);
 };

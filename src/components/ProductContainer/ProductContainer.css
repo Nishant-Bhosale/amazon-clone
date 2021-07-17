@@ -1,20 +1,12 @@
 .product-container {
 	padding: 1rem;
 	display: grid;
-	position: relative;
-	bottom: 5rem;
-	z-index: 500;
 	grid-template-columns: repeat(4, 1fr);
 	margin: auto;
 	gap: 3rem;
+	background-color: rgb(36, 34, 34);
 }
 
-.img {
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	filter: brightness(0.7) grayscale(0.3) blur(3px);
-	z-index: -1;
-	left: 0;
-	top: 0;
+.oncategory-page {
+	height: 100vh;
 }
