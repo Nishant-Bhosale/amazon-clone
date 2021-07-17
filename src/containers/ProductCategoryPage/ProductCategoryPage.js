@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
-import Footer from "../../components/Footer/Footer";
 import "./ProductCategoryPage.css";
 import axios from "axios";
 import Spinner from "../../components/Spinner/Spinner";
@@ -41,7 +40,6 @@ const ProductCategoryPage = (props) => {
 					</div>
 				</div>
 			)}
-			<Footer />
 		</React.Fragment>
 	);
 };

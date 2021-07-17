@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "../../components/Footer/Footer";
 import ProductImage from "../../components/ProductUI/ProductImage/ProductImage";
 import PostReview from "../../components/Reviews/Reviews";
 import "./ProductPage.css";
@@ -32,7 +31,6 @@ const ProductPage = (props) => {
 				</h2>
 				<PostReview title={properties.title} />
 			</div>
-			<Footer />
 		</React.Fragment>
 	);
 };

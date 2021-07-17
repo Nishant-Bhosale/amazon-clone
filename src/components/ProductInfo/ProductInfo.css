@@ -1,10 +1,12 @@
 .product-info {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	width: 75%;
+	justify-content: space-around;
+	width: 100%;
 	text-decoration: none;
 	color: black;
+	height: 100%;
+	background-color: #ccc;
 	text-align: left;
 }
 

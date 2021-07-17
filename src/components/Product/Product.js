@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ProductInfo from "../ProductInfo/ProductInfo";
 import PopupBar from "../PopupBar/PopupBar";
-import Zoom from "react-reveal/Zoom";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
@@ -48,38 +47,36 @@ const Product = (props) => {
 		<React.Fragment>
 			{showPopupBar ? popUpBar : null}
 
-			<Zoom>
-				<div className="product">
-					<div className="tip">
-						<Link
-							to={{
-								pathname: "/productinfopage",
-								state: { value: props.item },
+			<div className="product">
+				<div className="tip">
+					<Link
+						to={{
+							pathname: "/productinfopage",
+							state: { value: props.item },
+						}}
+						title="Click to see"
+					>
+						<img
+							src={props.item.image}
+							alt=""
+							loading="lazy"
+							style={{
+								height: "230px",
+								width: "190px",
+								backgroundColor: "transparent",
 							}}
-							title="Click to see"
-						>
-							<img
-								src={props.item.image}
-								alt=""
-								loading="lazy"
-								style={{
-									height: "230px",
-									width: "190px",
-									backgroundColor: "transparent",
-								}}
-							/>
-						</Link>
-						<span>
-							<div>Click To See More</div> {props.item.title}
-						</span>
-					</div>
-					<ProductInfo
-						item={props.item}
-						addItemToCart={() => postItemToCart(props.item, props.userID)}
-						showIcon={true}
-					/>
+						/>
+					</Link>
+					<span>
+						<div>Click To See More</div> {props.item.title}
+					</span>
 				</div>
-			</Zoom>
+				<ProductInfo
+					item={props.item}
+					addItemToCart={() => postItemToCart(props.item, props.userID)}
+					showIcon={true}
+				/>
+			</div>
 		</React.Fragment>
 	);
 };

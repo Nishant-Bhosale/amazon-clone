@@ -5,7 +5,6 @@ import PopupBar from "../../components/PopupBar/PopupBar";
 import firebase from "../../utils/firebase";
 import { Link } from "react-router-dom";
 import "./UserCart.css";
-import Footer from "../../components/Footer/Footer";
 import Spinner from "../../components/Spinner/Spinner";
 import { connect } from "react-redux";
 
@@ -80,7 +79,6 @@ const UserCart = (props) => {
 					</React.Fragment>
 				);
 			})}
-			<Footer />
 		</div>
 	);
 	return (
