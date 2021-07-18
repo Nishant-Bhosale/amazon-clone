@@ -25,7 +25,11 @@ function MainPage() {
 		<React.Fragment>
 			<div>
 				<Banner />
-				{loading ? <Spinner /> : <ProductContainer products={items} />}
+				{loading ? (
+					<Spinner />
+				) : (
+					<ProductContainer products={items} toShow={true} />
+				)}
 			</div>
 		</React.Fragment>
 	);

@@ -16,18 +16,19 @@
 
 .deleteBtn {
 	height: 2.3rem;
-	padding: 0.25rem 0.1;
-	width: 10rem;
+	margin-right: 2rem;
+	padding: 0.25rem 0.1rem;
+	width: 9rem;
 	background-color: red;
 	color: white;
 	border: none;
-	font-size: 1rem;
+	font-size: 0.75rem;
 	transition: all 0.4s ease-in-out;
 }
 
 .deleteBtn:hover {
 	background-color: transparent;
-	transform: scale(1.2);
+	transform: scale(1.1);
 	color: black;
 	border: 2px solid black;
 }

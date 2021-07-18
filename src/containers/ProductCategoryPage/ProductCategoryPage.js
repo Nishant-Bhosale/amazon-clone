@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Product from "../../components/Product/Product";
 import ProductContainer from "../../components/ProductContainer/ProductContainer";
 import axios from "axios";
 import Spinner from "../../components/Spinner/Spinner";
@@ -43,7 +42,11 @@ const ProductCategoryPage = (props) => {
 					// 	</div>
 					// )
 					<React.Fragment>
-						<ProductContainer products={products} onCategoryPage={true} />
+						<ProductContainer
+							products={products}
+							onCategoryPage={true}
+							toShow={true}
+						/>
 					</React.Fragment>
 				)
 

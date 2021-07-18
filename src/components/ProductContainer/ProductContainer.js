@@ -10,7 +10,9 @@ const ProductContainer = (props) => {
 	return (
 		<div className={arr.join(" ")}>
 			{props.products.map((product) => {
-				return <Product key={product.id} item={product} />;
+				return (
+					<Product key={product.id} item={product} toShow={props.toShow} />
+				);
 			})}
 		</div>
 	);

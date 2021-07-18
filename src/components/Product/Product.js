@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ProductInfo from "../ProductInfo/ProductInfo";
+import CartIcon from "../../components/ProductInfo/CartIcon/CartIcon";
 import PopupBar from "../PopupBar/PopupBar";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -74,7 +75,8 @@ const Product = (props) => {
 				<ProductInfo
 					item={props.item}
 					addItemToCart={() => postItemToCart(props.item, props.userID)}
-					showIcon={true}
+					showIcon={props.toShow}
+					clicked={props.clicked}
 				/>
 			</div>
 		</React.Fragment>
