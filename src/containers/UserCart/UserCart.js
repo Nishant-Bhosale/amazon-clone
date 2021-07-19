@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import TotalPrice from "../../components/ProductContainer/TotalPrice/TotalPrice";
-// import CategoryProduct from "../../components/CategoryProduct/CategoryProduct";
-// import ProductContainer from "../../components/ProductContainer/ProductContainer";
 import PopupBar from "../../components/PopupBar/PopupBar";
 import firebase from "../../utils/firebase";
 import { Link } from "react-router-dom";
@@ -9,7 +7,6 @@ import "./UserCart.css";
 import Spinner from "../../components/Spinner/Spinner";
 import { connect } from "react-redux";
 import Product from "../../components/Product/Product";
-import ProductContainer from "../../components/ProductContainer/ProductContainer";
 
 const UserCart = (props) => {
 	const [userCart, setUserCart] = useState([]);
@@ -69,11 +66,6 @@ const UserCart = (props) => {
 			<h1 style={{ color: "white", marginTop: "3rem", fontSize: "3rem" }}>
 				Your Cart
 			</h1>
-			{/* <ProductContainer
-				products={userCart}
-				toShow={false}
-				clicked={() => removeProductFromCart(cartItem.id)}
-			/> */}
 
 			<div className="product-container">
 				{userCart.map((cartItem) => {

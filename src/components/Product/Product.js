@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ProductInfo from "../ProductInfo/ProductInfo";
-import CartIcon from "../../components/ProductInfo/CartIcon/CartIcon";
 import PopupBar from "../PopupBar/PopupBar";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";

@@ -20,7 +20,7 @@ const Reviews = (props) => {
 				arr.push(snap.val());
 				setFetchedReviews(arr);
 			});
-	}, [props.title]);
+	}, [props]);
 
 	const postReview = () => {
 		let rev = {
@@ -72,7 +72,7 @@ const Reviews = (props) => {
 					)}
 
 					<div className="review-card">
-						<h2>Other Reviews:</h2>
+						<h2>Reviews:</h2>
 						{!fetchedReviews.length <= 0 ? (
 							<ReviewInfo reviews={fetchedReviews} />
 						) : (
