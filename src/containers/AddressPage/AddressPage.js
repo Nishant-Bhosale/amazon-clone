@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
 
 const AddressPage = (props) => {
 	const [address, setAddress] = useState({
 		buildingName: "",
-		pinCode: null,
+		pinCode: "",
 		area: "",
 		city: "",
 		state: "",
@@ -20,7 +22,13 @@ const AddressPage = (props) => {
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
-		console.log("Submitted");
+		console.log(props.userID);
+		const newAddress = { ...address, userID: props.userID };
+		console.log(newAddress);
+		axios.post(
+			"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/new.json",
+			newAddress,
+		);
 	};
 
 	return (
@@ -87,4 +95,9 @@ const AddressPage = (props) => {
 	);
 };
 
-export default AddressPage;
+const mapStateToProps = (state) => {
+	return {
+		userID: state.userID,
+	};
+};
+export default connect(mapStateToProps)(AddressPage);

@@ -13,6 +13,7 @@ const Product = (props) => {
 	const postItemToCart = (item, userID) => {
 		if (props.userID !== null) {
 			const newProduct = { ...item, userID };
+			console.log(newProduct);
 			axios
 				.post(
 					"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/cart.json",

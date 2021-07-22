@@ -13,7 +13,7 @@
 }
 
 .product:hover {
-	transform: translateY(-25px);
+	transform: scale(1.05);
 	box-shadow: 4px 7px 7px #ccc;
 }
 

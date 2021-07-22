@@ -237,7 +237,7 @@ img {
 .bg-primary,
 .badge-primary,
 .alert-primary {
-	background: var(--primary-color);
+	background: var(--dark-color);
 	color: #fff;
 }
 
