@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import firebase from "../../utils/firebase";
 import { connect } from "react-redux";
 
 const AddressPage = (props) => {
@@ -10,8 +11,27 @@ const AddressPage = (props) => {
 		city: "",
 		state: "",
 	});
+	const [doesAddressExist, setDoesAddressExist] = useState(false);
 
 	const { buildingName, pinCode, area, city, state } = address;
+
+	useEffect(() => {
+		const db = firebase.database().ref();
+
+		let fetchedAddress = {};
+
+		db.child("addresses")
+			.get()
+			.then((snapshot) => {
+				if (snapshot.exists()) {
+					setDoesAddressExist(true);
+					for (let key in snapshot.val()) {
+						fetchedAddress = { ...snapshot.val()[key], id: key };
+					}
+					setAddress(fetchedAddress);
+				}
+			});
+	}, []);
 
 	const onChangeHandler = (e) => {
 		setAddress({
@@ -20,16 +40,26 @@ const AddressPage = (props) => {
 		});
 	};
 
-	const onSubmitHandler = (e) => {
+	const onSubmitHandler = async (e) => {
 		e.preventDefault();
-		console.log(props.userID);
+
 		const newAddress = { ...address, userID: props.userID };
-		console.log(newAddress);
-		axios.post(
-			"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/new.json",
-			newAddress,
-		);
+
+		try {
+			const result = await axios.post(
+				"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/addresses.json",
+				newAddress,
+			);
+			console.log(result);
+		} catch (error) {
+			console.log(error);
+		}
 	};
+
+	// const deleteAddress = (e) => {
+	// 	e.preventDefault();
+	// 	const db
+	// }
 
 	return (
 		<div className="container">
@@ -87,10 +117,13 @@ const AddressPage = (props) => {
 				</div>
 				<input
 					type="submit"
-					value="Add Address"
+					value={doesAddressExist ? "Edit Address" : "Add Address"}
 					className="btn btn-primary btn-block"
 				/>
 			</form>
+			{doesAddressExist ? (
+				<button className="btn btn-danger btn-block">Delete Address</button>
+			) : null}
 		</div>
 	);
 };

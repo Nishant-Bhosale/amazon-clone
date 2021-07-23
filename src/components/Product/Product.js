@@ -10,23 +10,22 @@ const Product = (props) => {
 	const [showPopupBar, setShowPopUpBar] = useState(false);
 	const [error, setError] = useState(null);
 
-	const postItemToCart = (item, userID) => {
+	const postItemToCart = async (item, userID) => {
 		if (props.userID !== null) {
 			const newProduct = { ...item, userID };
-			console.log(newProduct);
-			axios
-				.post(
+
+			try {
+				const result = await axios.post(
 					"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/cart.json",
 					newProduct,
-				)
-				.then((res) => {
-					setError(false);
-					setShowPopUpBar(true);
-				})
-				.catch((err) => {
-					setShowPopUpBar(true);
-					setError(true);
-				});
+				);
+				console.log(result);
+				setError(false);
+				setShowPopUpBar(true);
+			} catch (error) {
+				setShowPopUpBar(true);
+				setError(true);
+			}
 		}
 	};
 

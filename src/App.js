@@ -16,7 +16,6 @@ const App = (props) => {
 	useEffect(() => {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
-				console.log(user);
 				props.authSuccess(user.uid, user.displayName, user.za);
 			}
 		});

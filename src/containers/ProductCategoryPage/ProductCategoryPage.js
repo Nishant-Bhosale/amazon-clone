@@ -9,15 +9,20 @@ const ProductCategoryPage = (props) => {
 	const productType = props.location.state.value;
 
 	useEffect(() => {
-		axios
-			.get(`https://fakestoreapi.com/products/category/${productType}`)
-			.then((result) => {
-				setProducts(result.data);
+		async function fetchData() {
+			try {
+				const results = await axios.get(
+					`https://fakestoreapi.com/products/category/${productType}`,
+				);
+
+				setProducts(results.data);
 				setLoading(false);
-			})
-			.catch((error) => {
+			} catch (error) {
 				setLoading(false);
-			});
+			}
+		}
+
+		fetchData();
 	}, [productType]);
 
 	return (
@@ -26,21 +31,6 @@ const ProductCategoryPage = (props) => {
 				loading ? (
 					<Spinner />
 				) : (
-					// (
-					// 	<div className="product-category-page">
-					// 		<div className="wrapper">
-					// 			{products.map((product) => {
-					// 				return (
-					// 					<CategoryProduct
-					// 						key={product.id}
-					// 						item={product}
-					// 						toShow={true}
-					// 					/>
-					// 				);
-					// 			})}
-					// 		</div>
-					// 	</div>
-					// )
 					<React.Fragment>
 						<ProductContainer
 							products={products}
