@@ -16,9 +16,8 @@
 
 .deleteBtn {
 	height: 2.3rem;
-	margin-right: 2rem;
 	padding: 0.25rem 0.1rem;
-	width: 9rem;
+	width: 5rem;
 	background-color: red;
 	color: white;
 	border: none;

@@ -143,7 +143,7 @@ const AddressPage = (props) => {
 				</div>
 				<input
 					type="submit"
-					value={doesAddressExist ? "Edit Address" : "Add Address"}
+					value="Add Address"
 					className="btn btn-primary btn-block"
 				/>
 			</form>

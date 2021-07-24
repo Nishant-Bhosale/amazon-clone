@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Banner from "../../components/Carousel/Carousel";
 import Spinner from "../../components/Spinner/Spinner";
 import ProductContainer from "../../components/ProductContainer/ProductContainer";
 
@@ -24,7 +23,14 @@ function MainPage() {
 	return (
 		<React.Fragment>
 			<div>
-				<Banner />
+				<div>
+					<img
+						src={`${process.env.PUBLIC_URL}/images/background-photo.jpg`}
+						alt=""
+						style={{ width: "100vw", height: "95vh" }}
+					/>
+					<p className="image-info">Best E-Commerce Site</p>
+				</div>
 				{loading ? (
 					<Spinner />
 				) : (

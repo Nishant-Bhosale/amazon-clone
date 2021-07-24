@@ -17,7 +17,7 @@ const ProductInfo = (props) => {
 			</div>
 			{!props.showIcon ? (
 				<button className="deleteBtn" onClick={props.clicked}>
-					Remove From Cart
+					Remove
 				</button>
 			) : (
 				<CartIcon clicked={props.addItemToCart} />
