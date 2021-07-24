@@ -1,15 +1,12 @@
 import React from "react";
 import "./PopupBar.css";
-import Fade from "react-reveal/Fade";
+
 const PopupBar = (props) => {
 	let classes = ["popup-bar"];
+
 	if (props.success) classes.push("success");
 	else if (props.fail) classes.push("fail");
-	return (
-		<Fade>
-			<div className={classes.join(" ")}>{props.children}</div>
-		</Fade>
-	);
+	return <div className={classes.join(" ")}>{props.children}</div>;
 };
 
 export default PopupBar;

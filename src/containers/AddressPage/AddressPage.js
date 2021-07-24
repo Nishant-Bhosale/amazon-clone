@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import firebase from "../../utils/firebase";
 import { connect } from "react-redux";
+import PopupBar from "../../components/PopupBar/PopupBar";
 
 const AddressPage = (props) => {
 	const [address, setAddress] = useState({
@@ -11,7 +12,10 @@ const AddressPage = (props) => {
 		city: "",
 		state: "",
 	});
+
 	const [doesAddressExist, setDoesAddressExist] = useState(false);
+	const [success, setSuccess] = useState(false);
+	const [text, setText] = useState("");
 
 	const { buildingName, pinCode, area, city, state } = address;
 
@@ -31,7 +35,7 @@ const AddressPage = (props) => {
 					setAddress(fetchedAddress);
 				}
 			});
-	}, []);
+	}, [success]);
 
 	const onChangeHandler = (e) => {
 		setAddress({
@@ -42,7 +46,6 @@ const AddressPage = (props) => {
 
 	const onSubmitHandler = async (e) => {
 		e.preventDefault();
-
 		const newAddress = { ...address, userID: props.userID };
 
 		try {
@@ -50,19 +53,42 @@ const AddressPage = (props) => {
 				"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/addresses.json",
 				newAddress,
 			);
-			console.log(result);
+			setText("Address Added Successfully");
+			setSuccess(true);
+		} catch (error) {
+			console.log(error);
+			setSuccess(false);
+		}
+	};
+
+	const deleteAddress = async () => {
+		const db = firebase.database().ref("addresses");
+
+		try {
+			const res = await db.child(address.id).remove();
+			setAddress({
+				buildingName: "",
+				pinCode: "",
+				area: "",
+				city: "",
+				state: "",
+			});
+
+			setDoesAddressExist(false);
+			setText("Address Deleted Successfully");
+			setSuccess(true);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	// const deleteAddress = (e) => {
-	// 	e.preventDefault();
-	// 	const db
-	// }
+	setTimeout(() => {
+		setSuccess(false);
+	}, 5000);
 
 	return (
 		<div className="container">
+			{success ? <PopupBar success={success}>{text}</PopupBar> : null}
 			<h1>
 				Your <span className="text-primary">Address</span>
 			</h1>
@@ -122,7 +148,12 @@ const AddressPage = (props) => {
 				/>
 			</form>
 			{doesAddressExist ? (
-				<button className="btn btn-danger btn-block">Delete Address</button>
+				<button
+					className="btn btn-danger btn-block"
+					onClick={() => deleteAddress()}
+				>
+					Delete Address
+				</button>
 			) : null}
 		</div>
 	);
