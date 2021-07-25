@@ -79,6 +79,7 @@ const UserCart = (props) => {
 					);
 				})}
 			</div>
+			<Link to="/address">Place Order</Link>
 		</div>
 	);
 	return (
@@ -97,10 +98,7 @@ const UserCart = (props) => {
 					</Link>
 				</div>
 			) : (
-				<div>
-					{productOnCartPage}
-					<Link to="/address">Place Order</Link>
-				</div>
+				<div>{productOnCartPage}</div>
 			)}
 		</React.Fragment>
 	);

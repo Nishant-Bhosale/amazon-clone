@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import firebase from "../../utils/firebase";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PopupBar from "../../components/PopupBar/PopupBar";
 
 const AddressPage = (props) => {
@@ -87,75 +88,89 @@ const AddressPage = (props) => {
 	}, 5000);
 
 	return (
-		<div className="container">
-			{success ? <PopupBar success={success}>{text}</PopupBar> : null}
-			<h1>
-				Your <span className="text-primary">Address</span>
-			</h1>
-			<form onSubmit={onSubmitHandler}>
-				<div className="form-group">
-					<input
-						type="text"
-						value={buildingName}
-						name="buildingName"
-						onChange={onChangeHandler}
-						required
-						placeholder="Flat, House no., Building, Company"
-					/>
-				</div>
-				<div className="form-group">
-					<input
-						type="text"
-						value={pinCode}
-						name="pinCode"
-						onChange={onChangeHandler}
-						required
-						placeholder="PIN Code"
-					/>
-				</div>
-				<div className="form-group">
-					<input
-						type="text"
-						value={area}
-						name="area"
-						onChange={onChangeHandler}
-						required
-						placeholder="Area, Colony, Street, Sector, Village"
-					/>
-				</div>
-				<div className="form-group">
-					<input
-						type="text"
-						value={city}
-						name="city"
-						onChange={onChangeHandler}
-						placeholder="Town/City"
-					/>
-				</div>
-				<div className="form-group">
-					<input
-						type="text"
-						value={state}
-						name="state"
-						onChange={onChangeHandler}
-						placeholder="State"
-					/>
-				</div>
-				<input
-					type="submit"
-					value="Add Address"
-					className="btn btn-primary btn-block"
-				/>
-			</form>
-			{doesAddressExist ? (
-				<button
-					className="btn btn-danger btn-block"
-					onClick={() => deleteAddress()}
-				>
-					Delete Address
-				</button>
-			) : null}
-		</div>
+		<React.Fragment>
+			<div className="container">
+				{success ? <PopupBar success={success}>{text}</PopupBar> : null}
+				<h1>
+					Your <span className="text-primary">Address</span>
+				</h1>
+				<form onSubmit={onSubmitHandler}>
+					<div className="form-group">
+						<input
+							type="text"
+							value={buildingName}
+							name="buildingName"
+							onChange={onChangeHandler}
+							required
+							placeholder="Flat, House no., Building, Company"
+						/>
+					</div>
+					<div className="form-group">
+						<input
+							type="text"
+							value={pinCode}
+							name="pinCode"
+							onChange={onChangeHandler}
+							required
+							placeholder="PIN Code"
+						/>
+					</div>
+					<div className="form-group">
+						<input
+							type="text"
+							value={area}
+							name="area"
+							onChange={onChangeHandler}
+							required
+							placeholder="Area, Colony, Street, Sector, Village"
+						/>
+					</div>
+					<div className="form-group">
+						<input
+							type="text"
+							value={city}
+							name="city"
+							onChange={onChangeHandler}
+							placeholder="Town/City"
+						/>
+					</div>
+					<div className="form-group">
+						<input
+							type="text"
+							value={state}
+							name="state"
+							onChange={onChangeHandler}
+							placeholder="State"
+						/>
+					</div>
+					{doesAddressExist ? (
+						<Link to="/checkout-page" className="btn btn-success btn-block">
+							Proceed to Checkout
+						</Link>
+					) : (
+						<input
+							type="submit"
+							value="Add Address"
+							className="btn btn-primary btn-block"
+						/>
+					)}
+					{/* {!doesAddressExist ? (
+						
+					) : null} */}
+				</form>
+				{doesAddressExist ? (
+					<React.Fragment>
+						<button
+							className="btn btn-danger btn-block"
+							// style={{ width: "91%", margin: "auto" }}
+							onClick={() => deleteAddress()}
+						>
+							Delete Address
+						</button>
+					</React.Fragment>
+				) : null}
+			</div>
+		</React.Fragment>
 	);
 };
 
