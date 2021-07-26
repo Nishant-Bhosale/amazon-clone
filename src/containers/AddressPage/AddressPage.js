@@ -50,6 +50,7 @@ const AddressPage = (props) => {
 		const newAddress = { ...address, userID: props.userID };
 
 		try {
+			// eslint-disable-next-line
 			const result = await axios.post(
 				"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/addresses.json",
 				newAddress,
@@ -66,6 +67,7 @@ const AddressPage = (props) => {
 		const db = firebase.database().ref("addresses");
 
 		try {
+			// eslint-disable-next-line
 			const res = await db.child(address.id).remove();
 			setAddress({
 				buildingName: "",
