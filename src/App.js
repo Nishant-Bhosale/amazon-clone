@@ -13,13 +13,22 @@ import AddressPage from "./containers/AddressPage/AddressPage";
 import "./App.css";
 
 const App = (props) => {
+	const { userCart, userID, authSuccess, fetchUserCart } = props;
+
 	useEffect(() => {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
-				props.authSuccess(user.uid, user.displayName, user.za);
+				authSuccess(user.uid, user.displayName, user.za);
+				console.log("hello");
 			}
 		});
-	}, [props]);
+		if (userCart) {
+			return;
+		} else {
+			console.log("repeat");
+			fetchUserCart(userID);
+		}
+	}, [userID, authSuccess, fetchUserCart]);
 
 	return (
 		<div className="App">
@@ -40,6 +49,8 @@ const App = (props) => {
 const mapStateToProps = (state) => {
 	return {
 		isAuth: state.token !== null,
+		userID: state.userID,
+		userCart: state.userCart,
 	};
 };
 
@@ -47,6 +58,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		authSuccess: (id, name, token) =>
 			dispatch(actions.authSuccess(id, name, token)),
+		fetchUserCart: (id) => dispatch(actions.fetchUserCart(id)),
 	};
 };
 

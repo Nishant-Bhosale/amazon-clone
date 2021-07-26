@@ -9,35 +9,36 @@ import { connect } from "react-redux";
 import Product from "../../components/Product/Product";
 
 const UserCart = (props) => {
-	const [userCart, setUserCart] = useState([]);
+	// const [userCart, setUserCart] = useState([]);
 	const [showPopupBar, setShowPopUpBar] = useState(false);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		const dbRef = firebase.database().ref();
-		dbRef
-			.child("cart")
-			.get()
-			.then((snapshot) => {
-				if (snapshot.exists()) {
-					const cart = [];
+	const { userCart } = props;
+	// useEffect(() => {
+	// 	const dbRef = firebase.database().ref();
+	// 	dbRef
+	// 		.child("cart")
+	// 		.get()
+	// 		.then((snapshot) => {
+	// 			if (snapshot.exists()) {
+	// 				const cart = [];
 
-					for (let key in snapshot.val()) {
-						cart.push({
-							...snapshot.val()[key],
-							id: key,
-						});
-					}
+	// 				for (let key in snapshot.val()) {
+	// 					cart.push({
+	// 						...snapshot.val()[key],
+	// 						id: key,
+	// 					});
+	// 				}
 
-					const filteredCart = cart.filter((cartProduct) => {
-						return props.userID === cartProduct.userID;
-					});
+	// 				const filteredCart = cart.filter((cartProduct) => {
+	// 					return props.userID === cartProduct.userID;
+	// 				});
 
-					setLoading(false);
-					setUserCart(filteredCart);
-				}
-			});
-	}, [props.userID]);
+	// 				setLoading(false);
+	// 				setUserCart(filteredCart);
+	// 			}
+	// 		});
+	// }, [props.userID]);
 
 	if (showPopupBar) {
 		setTimeout(() => {
@@ -49,11 +50,11 @@ const UserCart = (props) => {
 		const productRef = firebase.database().ref("cart").child(productID);
 		productRef.remove();
 
-		setUserCart((prevState) => {
-			return prevState.filter((cartProduct) => {
-				return productID !== cartProduct.id;
-			});
-		});
+		// setUserCart((prevState) => {
+		// 	return prevState.filter((cartProduct) => {
+		// 		return productID !== cartProduct.id;
+		// 	});
+		// });
 		setShowPopUpBar(true);
 	};
 
@@ -62,22 +63,24 @@ const UserCart = (props) => {
 	let productOnCartPage = (
 		<div className="background">
 			{showPopupBar ? popUpBar : null}
-			<TotalPrice items={userCart} />
+			{/* <TotalPrice items={userCart} /> */}
 			<h1 style={{ color: "white", marginTop: "3rem", fontSize: "3rem" }}>
 				Your Cart
 			</h1>
 
 			<div className="product-container">
-				{userCart.map((cartItem) => {
-					return (
-						<Product
-							key={cartItem.id}
-							item={cartItem}
-							toShow={false}
-							clicked={() => removeProductFromCart(cartItem.id)}
-						/>
-					);
-				})}
+				{userCart
+					? userCart.map((cartItem) => {
+							return (
+								<Product
+									key={cartItem.id}
+									item={cartItem}
+									toShow={false}
+									clicked={() => removeProductFromCart(cartItem.id)}
+								/>
+							);
+					  })
+					: null}
 			</div>
 			<Link to="/address">Place Order</Link>
 		</div>
@@ -88,7 +91,7 @@ const UserCart = (props) => {
 				<h1>Please Login to See Your Cart!</h1>
 			) : loading ? (
 				<Spinner />
-			) : userCart.length <= 0 ? (
+			) : userCart === null ? (
 				<div className="background">
 					<h1 style={{ color: "white", marginTop: "3rem", fontSize: "5rem" }}>
 						NO ITEMS FOUND IN YOUR CART
@@ -108,6 +111,7 @@ const mapStateToProps = (state) => {
 	return {
 		userID: state.userID,
 		isAuth: state.userID !== null,
+		userCart: state.userCart,
 	};
 };
 

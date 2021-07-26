@@ -5,6 +5,7 @@ const initialState = {
 	loading: true,
 	success: false,
 	userName: null,
+	userCart: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -43,6 +44,12 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				success: false,
+			};
+		case "FETCH_USERCART":
+			return {
+				...state,
+				loading: false,
+				userCart: action.userCart,
 			};
 		default:
 			return state;

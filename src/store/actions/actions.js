@@ -44,6 +44,42 @@ export const signOut = () => {
 	};
 };
 
+export const setUserCart = (cart) => {
+	return {
+		type: "FETCH_USERCART",
+		userCart: cart,
+	};
+};
+
+export const fetchUserCart = (userID) => {
+	const dbRef = firebase.database().ref();
+	return (dispatch) => {
+		dbRef
+			.child("cart")
+			.get()
+			.then((snapshot) => {
+				if (snapshot.exists()) {
+					const cart = [];
+
+					for (let key in snapshot.val()) {
+						cart.push({
+							...snapshot.val()[key],
+							id: key,
+						});
+					}
+
+					const filteredCart = cart.filter((cartProduct) => {
+						return userID === cartProduct.userID;
+					});
+
+					console.log(filteredCart);
+
+					dispatch(setUserCart(filteredCart));
+				}
+			});
+	};
+};
+
 export const auth = (email, password, isSignUp, name) => {
 	return (dispatch) => {
 		dispatch(authStart());
