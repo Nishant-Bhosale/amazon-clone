@@ -51,6 +51,13 @@ const reducer = (state = initialState, action) => {
 				loading: false,
 				userCart: action.userCart,
 			};
+		case "REMOVE_ITEM":
+			return {
+				...state,
+				userCart: state.userCart.filter((cartProduct) => {
+					return action.id !== cartProduct.id;
+				}),
+			};
 		default:
 			return state;
 	}
