@@ -9,7 +9,6 @@ import Product from "../../components/Product/Product";
 import { removeItem, fetchUserCart } from "../../store/actions/actions";
 
 const UserCart = (props) => {
-
 	const [showPopupBar, setShowPopUpBar] = useState(false);
 	const [loading, setLoading] = useState(false);
 
@@ -17,7 +16,7 @@ const UserCart = (props) => {
 
 	useEffect(() => {
 		fetchUserCart(props.userID);
-	}, [userID])
+	}, [userID]);
 
 	if (showPopupBar) {
 		setTimeout(() => {
@@ -44,11 +43,13 @@ const UserCart = (props) => {
 		<div className="background">
 			{showPopupBar ? popUpBar : null}
 			{/* <TotalPrice items={userCart} /> */}
-			<h1 style={{ color: "white", marginTop: "3rem", fontSize: "3rem" }}>
-				{userCart && userCart.length > 0 ? 'Your Cart' : 'NO ITEMS FOUND IN YOUR CART'}
+			<h1 style={{ color: "white", margin: "1rem 0", fontSize: "3rem" }}>
+				{userCart && userCart.length > 0
+					? "Your Cart"
+					: "NO ITEMS FOUND IN YOUR CART"}
 			</h1>
 
-			<div className="product-container">
+			<div className="user-cart-container">
 				{userCart
 					? userCart.map((cartItem) => {
 							return (
@@ -56,17 +57,22 @@ const UserCart = (props) => {
 									key={cartItem.id}
 									item={cartItem}
 									toShow={false}
-									clicked={() => {props.removeProductFromCart(cartItem.id)
-									setShowPopUpBar(true)}
-									
-									}
+									clicked={() => {
+										props.removeProductFromCart(cartItem.id);
+										setShowPopUpBar(true);
+									}}
 								/>
 							);
 					  })
 					: null}
 			</div>
-			{userCart && userCart.length > 0 ? <Link to="/address">Place Order</Link> : <Link to='/'>Start adding Products</Link>}
-			
+			{userCart && userCart.length > 0 ? (
+				<Link to="/address" className="order-btn">
+					Place Order
+				</Link>
+			) : (
+				<Link to="/">Start adding Products</Link>
+			)}
 		</div>
 	);
 	return (
@@ -93,7 +99,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		removeProductFromCart: (id) => dispatch(removeItem(id)),
-		fetchUserCart: (id) => dispatch(fetchUserCart(id))
+		fetchUserCart: (id) => dispatch(fetchUserCart(id)),
 	};
 };
 

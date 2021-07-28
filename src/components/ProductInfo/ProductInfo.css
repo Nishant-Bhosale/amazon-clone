@@ -11,6 +11,7 @@
 }
 
 .product-info-text {
+	max-width: 150px;
 	text-decoration-color: white;
 }
 
@@ -21,13 +22,12 @@
 	background-color: red;
 	color: white;
 	border: none;
-	font-size: 0.75rem;
+	font-size: 1rem;
 	transition: all 0.4s ease-in-out;
 }
 
 .deleteBtn:hover {
 	background-color: transparent;
-	transform: scale(1.1);
 	color: black;
 	border: 2px solid black;
 }

@@ -9,11 +9,14 @@
 	align-items: center;
 	padding-top: 1rem;
 	margin: 0 auto;
-	transition: all 0.4s ease-in-out;
+	border-radius: 15px;
+	transition: all 0.5s ease-in-out;
 }
 
 .product:hover {
 	transform: scale(1.05);
+	border-radius: 0;
+	box-shadow: 7px 9px 5px 3px rgb(207, 207, 72);
 }
 
 div.tip:hover {

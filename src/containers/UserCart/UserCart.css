@@ -1,6 +1,5 @@
 .background {
 	background-color: rgb(36, 34, 34);
-	margin-top: -3rem;
 	padding: 3rem;
 	height: auto;
 }
@@ -8,4 +7,31 @@
 .category-product-wrapper {
 	position: relative;
 	margin: 1rem;
+}
+
+.user-cart-container {
+	padding: 1rem;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin: auto;
+	gap: 3rem;
+	background-color: rgb(36, 34, 34);
+}
+
+.order-btn {
+	width: 9rem;
+	padding: 0.7rem;
+	margin: 3rem auto;
+	font-size: 1.5rem;
+	text-align: center;
+	color: black;
+	background-color: white;
+	border: 2px solid black;
+	transition: all 0.3s ease-in-out;
+}
+
+.order-btn:hover {
+	color: white;
+	background-color: black;
+	border: 3px solid white;
 }
