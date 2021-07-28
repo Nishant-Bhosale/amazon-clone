@@ -10,13 +10,14 @@ import { removeItem, fetchUserCart } from "../../store/actions/actions";
 
 const UserCart = (props) => {
 	const [showPopupBar, setShowPopUpBar] = useState(false);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	const { userCart, userID, fetchUserCart } = props;
 
 	useEffect(() => {
-		fetchUserCart(props.userID);
-	}, [userID]);
+		fetchUserCart(userID);
+		// setLoading(false);
+	}, [userID, fetchUserCart]);
 
 	if (showPopupBar) {
 		setTimeout(() => {
@@ -24,29 +25,21 @@ const UserCart = (props) => {
 		}, 2500);
 	}
 
-	// const removeProductFromCart = (productID) => {
-	// 	const productRef = firebase.database().ref("cart").child(productID);
-	// 	productRef.remove();
-
-	// 	setUserCart((prevState) => {
-	// 		return prevState.filter((cartProduct) => {
-	// 			return productID !== cartProduct.id;
-	// 		});
-	// 	});
-
-	// 	setShowPopUpBar(true);
-	// };
+	if (loading) {
+		setTimeout(() => {
+			setLoading(false);
+		}, 2700);
+	}
 
 	let popUpBar = <PopupBar fail={true}>Item removed Successfully</PopupBar>;
 
 	let productOnCartPage = (
 		<div className="background">
 			{showPopupBar ? popUpBar : null}
-			{/* <TotalPrice items={userCart} /> */}
+			{userCart && userCart.length > 0 ? <TotalPrice items={userCart} /> : null}
+
 			<h1 style={{ color: "white", margin: "1rem 0", fontSize: "3rem" }}>
-				{userCart && userCart.length > 0
-					? "Your Cart"
-					: "NO ITEMS FOUND IN YOUR CART"}
+				{userCart ? "Your Cart" : "NO ITEMS FOUND IN YOUR CART"}
 			</h1>
 
 			<div className="user-cart-container">

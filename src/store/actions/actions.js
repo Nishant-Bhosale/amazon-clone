@@ -73,8 +73,8 @@ export const fetchUserCart = (userID) => {
 					});
 
 					console.log(filteredCart);
-					if(filteredCart !== undefined){
-					dispatch(setUserCart(filteredCart));
+					if (filteredCart !== undefined) {
+						dispatch(setUserCart(filteredCart));
 					}
 				}
 			});
