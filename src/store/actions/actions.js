@@ -72,7 +72,6 @@ export const fetchUserCart = (userID) => {
 						return userID === cartProduct.userID;
 					});
 
-					console.log(filteredCart);
 					if (filteredCart !== undefined) {
 						dispatch(setUserCart(filteredCart));
 					}
@@ -90,16 +89,6 @@ export const removeItem = (id) => {
 		id,
 	};
 };
-// export const removeItemFromCart = (id) => {
-// 	const productRef = firebase.database().ref("cart").child(id);
-// 	productRef.remove();
-
-// 	setUserCart((prevState) => {
-// 		return prevState.filter((cartProduct) => {
-// 			return id !== cartProduct.id;
-// 		});
-// 	});
-// };
 
 export const auth = (email, password, isSignUp, name) => {
 	return (dispatch) => {

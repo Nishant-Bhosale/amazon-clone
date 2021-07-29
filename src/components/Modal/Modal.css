@@ -1,13 +1,14 @@
 .modal {
-	height: 200px;
-	width: 700px;
+	height: 500px;
+	width: 500px;
 	margin: 3rem auto;
 	position: fixed;
-	top: 2.1rem;
-	left: 12%;
+	top: 4rem;
+	left: 30%;
 	z-index: 500;
 	transition: all 0.7s ease-out;
-	background-color: red;
+	background-color: white;
+	border: 3px solid black;
 	animation: modalAnimation 1s forwards;
 }
 

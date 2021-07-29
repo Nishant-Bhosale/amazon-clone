@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import firebase from "../../utils/firebase";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import Modal from "../../components/Modal/Modal";
 import PopupBar from "../../components/PopupBar/PopupBar";
 
 const AddressPage = (props) => {
@@ -17,6 +17,7 @@ const AddressPage = (props) => {
 	const [doesAddressExist, setDoesAddressExist] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const [text, setText] = useState("");
+	const [modal, setModal] = useState(false);
 
 	const { buildingName, pinCode, area, city, state } = address;
 
@@ -34,6 +35,7 @@ const AddressPage = (props) => {
 						fetchedAddress = { ...snapshot.val()[key], id: key };
 					}
 					setAddress(fetchedAddress);
+					console.log(fetchedAddress);
 				}
 			});
 	}, [success]);
@@ -57,6 +59,8 @@ const AddressPage = (props) => {
 			);
 			setText("Address Added Successfully");
 			setSuccess(true);
+
+			console.log(result);
 		} catch (error) {
 			console.log(error);
 			setSuccess(false);
@@ -77,6 +81,8 @@ const AddressPage = (props) => {
 				state: "",
 			});
 
+			console.log(res);
+
 			setDoesAddressExist(false);
 			setText("Address Deleted Successfully");
 			setSuccess(true);
@@ -85,12 +91,24 @@ const AddressPage = (props) => {
 		}
 	};
 
+	const toggleModalHandler = () => {
+		setModal(false);
+	};
+
 	setTimeout(() => {
 		setSuccess(false);
 	}, 5000);
 
 	return (
 		<React.Fragment>
+			{modal ? (
+				<Modal toggleModal={toggleModalHandler}>
+					<h1>Your Order</h1>
+					{props.userCart.map((product) => {
+						return <h3 key={product.id}>{product.title}</h3>;
+					})}
+				</Modal>
+			) : null}
 			<div className="container">
 				{success ? <PopupBar success={success}>{text}</PopupBar> : null}
 				<h1>
@@ -145,26 +163,24 @@ const AddressPage = (props) => {
 							placeholder="State"
 						/>
 					</div>
-					{doesAddressExist ? (
-						<Link to="/checkout-page" className="btn btn-success btn-block">
-							Proceed to Checkout
-						</Link>
-					) : (
+					{!doesAddressExist ? (
 						<input
 							type="submit"
 							value="Add Address"
 							className="btn btn-primary btn-block"
 						/>
-					)}
-					{/* {!doesAddressExist ? (
-						
-					) : null} */}
+					) : null}
 				</form>
 				{doesAddressExist ? (
 					<React.Fragment>
 						<button
+							className="btn btn-success btn-block"
+							onClick={() => setModal(true)}
+						>
+							Proceed to Checkout
+						</button>
+						<button
 							className="btn btn-danger btn-block"
-							// style={{ width: "91%", margin: "auto" }}
 							onClick={() => deleteAddress()}
 						>
 							Delete Address
@@ -179,6 +195,7 @@ const AddressPage = (props) => {
 const mapStateToProps = (state) => {
 	return {
 		userID: state.userID,
+		userCart: state.userCart,
 	};
 };
 export default connect(mapStateToProps)(AddressPage);

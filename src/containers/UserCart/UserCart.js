@@ -39,7 +39,9 @@ const UserCart = (props) => {
 			{userCart && userCart.length > 0 ? <TotalPrice items={userCart} /> : null}
 
 			<h1 style={{ color: "white", margin: "1rem 0", fontSize: "3rem" }}>
-				{userCart ? "Your Cart" : "NO ITEMS FOUND IN YOUR CART"}
+				{userCart && userCart.length > 0
+					? "Your Cart"
+					: "NO ITEMS FOUND IN YOUR CART"}
 			</h1>
 
 			<div className="user-cart-container">
