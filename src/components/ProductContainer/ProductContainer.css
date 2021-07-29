@@ -1,13 +1,22 @@
 .product-container {
-	padding: 1rem;
+	padding: 0.5rem;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 	margin: auto;
 	margin-top: -1rem;
-	gap: 3rem;
+	column-gap: 0.5rem;
+	row-gap: 1.25rem;
 	background-color: rgb(36, 34, 34);
 }
 
 .oncategory-page {
 	height: 130vh;
+}
+
+@media screen and (min-width: 640px) {
+	.product-container {
+		grid-template-columns: repeat(4, 1fr);
+		gap: 3rem;
+		padding: 1rem;
+	}
 }

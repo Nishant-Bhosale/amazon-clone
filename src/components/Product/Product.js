@@ -60,11 +60,7 @@ const Product = (props) => {
 							src={props.item.image}
 							alt=""
 							loading="lazy"
-							style={{
-								height: "230px",
-								width: "190px",
-								backgroundColor: "transparent",
-							}}
+							className="product-img"
 						/>
 					</Link>
 					<span>

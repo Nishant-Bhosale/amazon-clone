@@ -8,7 +8,6 @@ const CartIcon = (props) => {
 			alt=""
 			title="Add to Cart"
 			className="cart-icon"
-			style={{ height: "30px", width: "25px" }}
 			onClick={props.clicked}
 		/>
 	);

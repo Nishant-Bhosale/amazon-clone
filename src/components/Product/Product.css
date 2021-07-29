@@ -1,6 +1,6 @@
 .product {
-	height: 230px;
-	width: 200px;
+	height: 210px;
+	width: 140px;
 	display: flex;
 	text-decoration: none;
 	flex-direction: column;
@@ -16,7 +16,7 @@
 .product:hover {
 	transform: scale(1.05);
 	border-radius: 0;
-	box-shadow: 7px 9px 5px 3px rgb(207, 207, 72);
+	box-shadow: 7px 5px 5px 3px rgb(207, 207, 72);
 }
 
 div.tip:hover {
@@ -37,15 +37,36 @@ div.tip:hover span {
 	color: white;
 	left: 0px;
 	margin: 10px;
-	width: 250px;
 	position: absolute;
+	width: 150px;
+	font-size: 0.75rem;
 	top: 3rem;
 	text-decoration: none;
 }
 
+.product-img {
+	width: 100px;
+	height: 120px;
+	overflow: hidden;
+}
+
 @media screen and (min-width: 640px) {
+	.product-img {
+		height: 230px;
+		width: 190px;
+		background-color: transparent;
+	}
 	.product {
 		height: 400px;
 		width: 300px;
+		margin: 1rem 0;
+	}
+
+	.product:hover {
+		box-shadow: 7px 9px 5px 3px rgb(207, 207, 72);
+	}
+
+	div.tip:hover span {
+		width: 250px;
 	}
 }

@@ -8,6 +8,8 @@
 	height: 100%;
 	background-color: #ccc;
 	text-align: left;
+	font-size: 0.75rem;
+	padding: 0.1rem;
 }
 
 .product-info-text {
@@ -30,4 +32,10 @@
 	background-color: transparent;
 	color: black;
 	border: 2px solid black;
+}
+
+@media screen and (min-width: 640px) {
+	.product-info {
+		font-size: 1rem;
+	}
 }

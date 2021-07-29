@@ -6,12 +6,7 @@ const ProductImage = ({ item }) => {
 	return (
 		<Link to={{ pathname: "/productinfopage", state: { value: item } }}>
 			<div>
-				<img
-					src={item.image}
-					alt=""
-					title={item.title}
-					className="product-img"
-				/>
+				<img src={item.image} alt="" title={item.title} loading="lazy" />
 			</div>
 		</Link>
 	);
