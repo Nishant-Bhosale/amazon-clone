@@ -20,6 +20,7 @@ const Reviews = (props) => {
 				arr.push(snap.val());
 				setFetchedReviews(arr);
 			});
+		console.log(arr);
 	}, [props]);
 
 	const postReview = () => {
@@ -34,6 +35,7 @@ const Reviews = (props) => {
 			"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/reviews.json",
 			rev,
 		);
+
 		setTextReview("");
 	};
 

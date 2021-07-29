@@ -1,6 +1,6 @@
 .product {
-	height: 400px;
-	width: 300px;
+	height: 230px;
+	width: 200px;
 	display: flex;
 	text-decoration: none;
 	flex-direction: column;
@@ -41,4 +41,11 @@ div.tip:hover span {
 	position: absolute;
 	top: 3rem;
 	text-decoration: none;
+}
+
+@media screen and (min-width: 640px) {
+	.product {
+		height: 400px;
+		width: 300px;
+	}
 }

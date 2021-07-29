@@ -11,7 +11,6 @@ function MainPage() {
 			.get("https://fakestoreapi.com/products")
 			.then((res) => {
 				setItems(res.data);
-				console.log(res.data);
 				setLoading(false);
 			})
 			.catch((error) => {
@@ -27,7 +26,8 @@ function MainPage() {
 					<img
 						src={`${process.env.PUBLIC_URL}/images/background-photo.jpg`}
 						alt=""
-						style={{ width: "100vw", height: "95vh" }}
+						// style={{ width: "100vw", height: "95vh" }}
+						className="main-background-img"
 					/>
 					<p className="image-info">Best E-Commerce Site</p>
 				</div>

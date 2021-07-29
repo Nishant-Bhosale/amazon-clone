@@ -1,15 +1,31 @@
 .modal {
-	height: 500px;
-	width: 500px;
-	margin: 3rem auto;
-	position: fixed;
-	top: 4rem;
-	left: 30%;
-	z-index: 500;
 	transition: all 0.7s ease-out;
 	background-color: black;
-	border: 3px solid black;
+	position: absolute;
+	left: 0.75rem;
+	top: 3rem;
 	animation: modalAnimation 1s forwards;
+	overflow-y: scroll;
+	margin: 3rem auto;
+	width: 95%;
+	height: 75vh;
+	z-index: 500;
+	-ms-overflow-style: none;
+	border: 5px solid white;
+}
+
+.modal::-webkit-scrollbar {
+	display: none;
+}
+
+@media screen and (min-width: 640px) {
+	.modal {
+		position: fixed;
+		height: 500px;
+		width: 500px;
+		top: 4rem;
+		left: 30%;
+	}
 }
 
 @keyframes modalAnimation {

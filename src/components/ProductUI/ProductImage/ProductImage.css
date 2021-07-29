@@ -1,0 +1,12 @@
+.product-img {
+	width: 100px;
+	height: 100% !important;
+}
+
+@media screen and (min-width: 640px) {
+	.product-img {
+		margin-left: 3rem;
+		height: 100%;
+		width: 200px;
+	}
+}

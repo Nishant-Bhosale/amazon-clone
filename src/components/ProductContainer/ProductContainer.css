@@ -3,6 +3,7 @@
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	margin: auto;
+	margin-top: -1rem;
 	gap: 3rem;
 	background-color: rgb(36, 34, 34);
 }
