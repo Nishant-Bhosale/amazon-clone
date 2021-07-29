@@ -7,7 +7,7 @@
 	left: 30%;
 	z-index: 500;
 	transition: all 0.7s ease-out;
-	background-color: white;
+	background-color: black;
 	border: 3px solid black;
 	animation: modalAnimation 1s forwards;
 }

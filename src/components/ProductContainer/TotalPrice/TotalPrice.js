@@ -13,7 +13,9 @@ const TotalPrice = (props) => {
 
 	return (
 		<div className="totalPrice">
-			<h3>Your Subtotal:$ {totalPrice.toFixed(2)}</h3>
+			<h3>
+				Your Total: {""}$ {totalPrice.toFixed(2)}
+			</h3>
 		</div>
 	);
 };

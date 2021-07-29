@@ -16,7 +16,6 @@ const UserCart = (props) => {
 
 	useEffect(() => {
 		fetchUserCart(userID);
-		// setLoading(false);
 	}, [userID, fetchUserCart]);
 
 	if (showPopupBar) {
@@ -62,7 +61,10 @@ const UserCart = (props) => {
 					: null}
 			</div>
 			{userCart && userCart.length > 0 ? (
-				<Link to="/address" className="order-btn">
+				<Link
+					to={{ pathname: "/address", state: { userCart: userCart } }}
+					className="order-btn"
+				>
 					Place Order
 				</Link>
 			) : (

@@ -1,0 +1,41 @@
+.order-wrapper {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+}
+
+.modal > h1 {
+	color: white;
+}
+
+.product-wrapper {
+	padding-left: 1rem;
+	color: white;
+	margin: 1rem auto;
+}
+
+.total-price {
+	text-align: right;
+	margin-top: 1.3rem;
+	margin-right: 5.25rem;
+	color: white;
+}
+
+.order {
+	position: absolute;
+	left: 5rem;
+	bottom: 1.5rem;
+	background-color: white;
+	color: black;
+	border: 2px solid black;
+	transition: all 0.3s ease-in-out;
+	padding: 0.25rem;
+}
+
+.order:hover {
+	background-color: black;
+	border: 2px solid white;
+	color: white;
+}

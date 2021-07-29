@@ -4,6 +4,7 @@ import firebase from "../../utils/firebase";
 import { connect } from "react-redux";
 import Modal from "../../components/Modal/Modal";
 import PopupBar from "../../components/PopupBar/PopupBar";
+import "./AddressPage.css";
 
 const AddressPage = (props) => {
 	const [address, setAddress] = useState({
@@ -21,6 +22,10 @@ const AddressPage = (props) => {
 
 	const { buildingName, pinCode, area, city, state } = address;
 
+	const userCart = props.location.state.userCart;
+
+	let total = 0;
+
 	useEffect(() => {
 		const db = firebase.database().ref();
 
@@ -35,7 +40,6 @@ const AddressPage = (props) => {
 						fetchedAddress = { ...snapshot.val()[key], id: key };
 					}
 					setAddress(fetchedAddress);
-					console.log(fetchedAddress);
 				}
 			});
 	}, [success]);
@@ -59,8 +63,6 @@ const AddressPage = (props) => {
 			);
 			setText("Address Added Successfully");
 			setSuccess(true);
-
-			console.log(result);
 		} catch (error) {
 			console.log(error);
 			setSuccess(false);
@@ -95,18 +97,47 @@ const AddressPage = (props) => {
 		setModal(false);
 	};
 
-	setTimeout(() => {
-		setSuccess(false);
-	}, 5000);
+	const onOrderHandler = () => {
+		setText("Ordered Successfully");
+		setSuccess(true);
+		setTimeout(() => {
+			setModal(false);
+			setSuccess(false);
+			window.location.href = "/";
+		}, 3000);
+	};
+
+	if (success) {
+		setTimeout(() => {
+			setSuccess(false);
+		}, 5000);
+	}
 
 	return (
 		<React.Fragment>
 			{modal ? (
 				<Modal toggleModal={toggleModalHandler}>
 					<h1>Your Order</h1>
-					{props.userCart.map((product) => {
-						return <h3 key={product.id}>{product.title}</h3>;
-					})}
+					<div className="order-wrapper">
+						{userCart !== undefined
+							? userCart.map((product) => {
+									total += product.price;
+									return (
+										<React.Fragment key={product.id}>
+											<div className="product-wrapper">{product.title}:</div>
+											<div className="product-wrapper">{product.price}$</div>
+										</React.Fragment>
+									);
+							  })
+							: null}
+					</div>
+					<hr />
+
+					<button className="order" onClick={onOrderHandler}>
+						Order Now
+					</button>
+
+					<div className="total-price">Total Price: {total.toFixed(2)}$</div>
 				</Modal>
 			) : null}
 			<div className="container">
@@ -195,7 +226,6 @@ const AddressPage = (props) => {
 const mapStateToProps = (state) => {
 	return {
 		userID: state.userID,
-		userCart: state.userCart,
 	};
 };
 export default connect(mapStateToProps)(AddressPage);
