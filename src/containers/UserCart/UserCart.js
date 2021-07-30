@@ -37,7 +37,7 @@ const UserCart = (props) => {
 			{showPopupBar ? popUpBar : null}
 			{userCart && userCart.length > 0 ? <TotalPrice items={userCart} /> : null}
 
-			<h1 style={{ color: "white", margin: "1rem 0", fontSize: "3rem" }}>
+			<h1>
 				{userCart && userCart.length > 0
 					? "Your Cart"
 					: "NO ITEMS FOUND IN YOUR CART"}
