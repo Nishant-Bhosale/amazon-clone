@@ -42,7 +42,7 @@ ul {
 .image-info {
 	position: absolute;
 	top: 7rem;
-	font-size: 2rem;
+	font-size: 1.75rem;
 	text-align: center;
 	margin: auto;
 	color: white;
@@ -396,10 +396,6 @@ h3 {
 	color: blue;
 }
 
-.navbar .welcome span {
-	margin-right: 0.6rem;
-}
-
 /* Animation (Add After) */
 .item-enter {
 	opacity: 0;
@@ -435,24 +431,5 @@ h3 {
 
 	.large {
 		font-size: 2rem;
-	}
-
-	.lead {
-		font-size: 1rem;
-	}
-
-	/* Navbar */
-	.navbar {
-		display: block;
-		text-align: center;
-	}
-
-	.navbar h1 {
-		margin-bottom: 0.6rem;
-	}
-
-	.navbar ul {
-		text-align: center;
-		justify-content: center;
 	}
 }

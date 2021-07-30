@@ -83,8 +83,6 @@ const AddressPage = (props) => {
 				state: "",
 			});
 
-			console.log(res);
-
 			setDoesAddressExist(false);
 			setText("Address Deleted Successfully");
 			setSuccess(true);

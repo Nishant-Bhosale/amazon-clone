@@ -3,6 +3,7 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	margin: auto;
+	padding-top: 2rem;
 	margin-top: -1rem;
 	column-gap: 0.5rem;
 	row-gap: 1.25rem;
@@ -10,7 +11,7 @@
 }
 
 .oncategory-page {
-	height: 130vh;
+	height: auto;
 }
 
 @media screen and (min-width: 640px) {
@@ -18,5 +19,9 @@
 		grid-template-columns: repeat(4, 1fr);
 		gap: 3rem;
 		padding: 1rem;
+	}
+
+	.oncategory-page {
+		height: 130vh;
 	}
 }

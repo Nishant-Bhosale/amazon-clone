@@ -9,6 +9,7 @@ const ProductCategoryPage = (props) => {
 	const productType = props.location.state.value;
 
 	useEffect(() => {
+		setLoading(true);
 		async function fetchData() {
 			try {
 				const results = await axios.get(

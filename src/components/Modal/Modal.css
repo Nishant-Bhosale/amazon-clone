@@ -8,7 +8,7 @@
 	overflow-y: scroll;
 	margin: 3rem auto;
 	width: 95%;
-	height: 75vh;
+	height: auto;
 	z-index: 500;
 	-ms-overflow-style: none;
 	border: 5px solid white;

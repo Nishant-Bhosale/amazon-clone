@@ -1,6 +1,6 @@
 .product {
-	height: 210px;
-	width: 140px;
+	height: 190px;
+	width: 90%;
 	display: flex;
 	text-decoration: none;
 	flex-direction: column;
@@ -11,6 +11,7 @@
 	margin: 0 auto;
 	border-radius: 15px;
 	transition: all 0.5s ease-in-out;
+	max-width: 210px;
 }
 
 .product:hover {
@@ -39,14 +40,14 @@ div.tip:hover span {
 	margin: 10px;
 	position: absolute;
 	width: 150px;
-	font-size: 0.75rem;
+	font-size: 0.6rem;
 	top: 3rem;
 	text-decoration: none;
 }
 
 .product-img {
-	width: 100px;
-	height: 120px;
+	width: 75px;
+	height: 95px;
 	overflow: hidden;
 }
 
@@ -56,10 +57,12 @@ div.tip:hover span {
 		width: 190px;
 		background-color: transparent;
 	}
+
 	.product {
 		height: 400px;
 		width: 300px;
 		margin: 1rem 0;
+		max-width: 300px;
 	}
 
 	.product:hover {
