@@ -13,6 +13,7 @@ const UserCart = (props) => {
 	const [loading, setLoading] = useState(true);
 
 	const { userCart, userID, fetchUserCart } = props;
+	const bg = document.querySelector(".background");
 
 	useEffect(() => {
 		fetchUserCart(userID);
@@ -22,6 +23,10 @@ const UserCart = (props) => {
 		setTimeout(() => {
 			setShowPopUpBar(false);
 		}, 2500);
+	}
+
+	if (userCart && userCart.length < 5 && bg) {
+		bg.style.height = "100vh";
 	}
 
 	if (loading) {

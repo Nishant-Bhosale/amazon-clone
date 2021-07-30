@@ -28,21 +28,17 @@ const ProductCategoryPage = (props) => {
 
 	return (
 		<React.Fragment>
-			{
-				loading ? (
-					<Spinner />
-				) : (
-					<React.Fragment>
-						<ProductContainer
-							products={products}
-							onCategoryPage={true}
-							toShow={true}
-						/>
-					</React.Fragment>
-				)
-
-				// </ProductContainer>
-			}
+			{loading ? (
+				<Spinner />
+			) : (
+				<React.Fragment>
+					<ProductContainer
+						products={products}
+						onCategoryPage={true}
+						toShow={true}
+					/>
+				</React.Fragment>
+			)}
 		</React.Fragment>
 	);
 };

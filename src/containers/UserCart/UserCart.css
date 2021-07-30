@@ -1,6 +1,6 @@
 .background {
 	background-color: rgb(36, 34, 34);
-	height: auto;
+	height: 100vh;
 }
 
 .background > h1 {
@@ -23,10 +23,10 @@
 }
 
 .order-btn {
-	width: 9rem;
+	width: 5rem;
 	padding: 0.7rem;
 	margin: 3rem auto;
-	font-size: 1.5rem;
+	font-size: 1rem;
 	text-align: center;
 	color: black;
 	background-color: white;
@@ -53,5 +53,10 @@
 	.background > h1 {
 		margin: 1rem 0;
 		font-size: 3rem;
+	}
+
+	.order-btn {
+		font-size: 1.5rem;
+		width: 9rem;
 	}
 }
