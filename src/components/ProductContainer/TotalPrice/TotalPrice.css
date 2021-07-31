@@ -1,20 +1,27 @@
 .totalPrice {
 	color: black;
 	background-color: white;
-	height: 5rem;
-	width: 15rem;
-	display: grid;
-	place-items: center;
-	position: fixed;
-	margin-top: 1rem;
+	height: 3rem;
+	width: 7rem;
 	box-shadow: 3px 5px 7px rgb(0, 183, 255);
-	font-size: 1rem;
 	z-index: 100000;
-	left: 1rem;
-	animation: move 1s ease-in-out infinite;
-	animation-direction: alternate;
+	font-size: 0.75rem;
+	position: relative;
+	animation: none;
 }
 
+@media screen and (min-width: 640px) {
+	.totalPrice {
+		animation: move 1s ease-in-out infinite;
+		animation-direction: alternate;
+		margin-top: 1rem;
+		position: fixed;
+		left: 1rem;
+		height: 5rem;
+		width: 15rem;
+		font-size: 1rem;
+	}
+}
 @keyframes move {
 	from {
 		transform: translateY(0);

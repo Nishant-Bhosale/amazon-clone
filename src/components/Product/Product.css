@@ -71,5 +71,6 @@ div.tip:hover span {
 
 	div.tip:hover span {
 		width: 250px;
+		font-size: 1rem;
 	}
 }

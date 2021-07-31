@@ -25,9 +25,9 @@ const UserCart = (props) => {
 		}, 2500);
 	}
 
-	if (userCart && userCart.length < 5 && bg) {
-		bg.style.height = "100vh";
-	}
+	// if (userCart && userCart.length < 5 && bg) {
+	// 	bg.style.height = "100vh";
+	// }
 
 	if (loading) {
 		setTimeout(() => {
