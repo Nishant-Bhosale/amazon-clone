@@ -23,7 +23,7 @@
 }
 
 .order-btn {
-	width: 5rem;
+	width: 95%;
 	padding: 0.7rem;
 	margin: 3rem auto;
 	font-size: 1rem;
@@ -32,6 +32,7 @@
 	background-color: white;
 	border: 2px solid black;
 	transition: all 0.3s ease-in-out;
+	display: block;
 }
 
 .order-btn:hover {
@@ -59,7 +60,9 @@
 	}
 
 	.order-btn {
-		font-size: 1.5rem;
+		display: block;
+		font-size: 1.25rem;
+		/* height: 5rem; */
 		width: 9rem;
 	}
 }
