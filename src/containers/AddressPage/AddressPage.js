@@ -14,7 +14,7 @@ const AddressPage = (props) => {
 		city: "",
 		state: "",
 	});
-
+	const [disabled, setDisabled] = useState(false);
 	const [doesAddressExist, setDoesAddressExist] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const [text, setText] = useState("");
@@ -54,7 +54,7 @@ const AddressPage = (props) => {
 	const onSubmitHandler = async (e) => {
 		e.preventDefault();
 		const newAddress = { ...address, userID: props.userID };
-
+		setDisabled(true);
 		try {
 			// eslint-disable-next-line
 			const result = await axios.post(
@@ -63,6 +63,7 @@ const AddressPage = (props) => {
 			);
 			setText("Address Added Successfully");
 			setSuccess(true);
+			setDisabled(false);
 		} catch (error) {
 			console.log(error);
 			setSuccess(false);
@@ -197,6 +198,7 @@ const AddressPage = (props) => {
 							type="submit"
 							value="Add Address"
 							className="btn btn-primary btn-block"
+							disabled={disabled}
 						/>
 					) : null}
 				</form>

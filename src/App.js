@@ -10,21 +10,20 @@ import { connect } from "react-redux";
 import * as actions from "./store/actions/actions";
 import NavBar from "./components/NavBar/NavBar";
 import AddressPage from "./containers/AddressPage/AddressPage";
+import OrdersPage from "./containers/OrdersPage/OrdersPage";
 import "./App.css";
 
 const App = (props) => {
-	const {  userID, authSuccess } = props;
+	const { userID, authSuccess } = props;
 
 	useEffect(() => {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
 				authSuccess(user.uid, user.displayName, user.za);
-			}	
+			}
 		});
-
-		
 	}, [userID, authSuccess]);
-// a
+	// a
 	return (
 		<div className="App">
 			<NavBar />
@@ -35,6 +34,7 @@ const App = (props) => {
 				<Route path="/mycart" component={UserCart} />
 				<Route path="/productinfopage" component={ProductPage} />
 				<Route path="/address" component={AddressPage} />
+				<Route path="/myorders" component={OrdersPage} />
 				{/* <Route component={Error} /> */}
 			</Switch>
 		</div>
@@ -45,14 +45,13 @@ const mapStateToProps = (state) => {
 	return {
 		isAuth: state.token !== null,
 		userID: state.userID,
-	
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		authSuccess: (id, name, token) =>
-			dispatch(actions.authSuccess(id, name, token))
+			dispatch(actions.authSuccess(id, name, token)),
 	};
 };
 

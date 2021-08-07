@@ -1,7 +1,7 @@
 import React from "react";
 
 const OrdersPage = () => {
-	return <div></div>;
+	return <div>Orders page</div>;
 };
 
 export default OrdersPage;

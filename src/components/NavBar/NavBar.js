@@ -24,6 +24,9 @@ const NavBar = (props) => {
 							</Link>
 						)}
 
+						<Link className="navigation-item" to="/myorders">
+							Orders
+						</Link>
 						<Link className="navigation-item" to="/mycart">
 							Cart
 						</Link>
