@@ -23,10 +23,10 @@
 }
 
 .order-btn {
-	width: 95%;
-	padding: 0.7rem;
-	margin: 3rem auto;
-	font-size: 1rem;
+	width: 50%;
+	padding: 5px;
+	margin: 1rem auto;
+	font-size: 0.75rem;
 	text-align: center;
 	color: black;
 	background-color: white;
@@ -38,7 +38,7 @@
 .order-btn:hover {
 	color: white;
 	background-color: black;
-	border: 3px solid white;
+	border-color: white;
 }
 
 @media screen and (min-width: 640px) {
@@ -62,7 +62,9 @@
 	.order-btn {
 		display: block;
 		font-size: 1.25rem;
-		/* height: 5rem; */
 		width: 9rem;
+		width: 95%;
+		padding: 0.7rem;
+		margin: 3rem auto;
 	}
 }
