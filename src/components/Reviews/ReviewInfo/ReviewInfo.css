@@ -1,9 +1,10 @@
 .review-text-wrapper {
-	color: white;
-	background-color: black;
+	color: black;
+	background-color: white;
+	border: 2px solid black;
 	width: 105%;
 	margin: 1rem 0;
-	padding: 0 1rem;
+	padding: 0.3rem 1rem;
 	text-align: left;
 }
 

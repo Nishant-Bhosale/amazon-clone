@@ -46,7 +46,7 @@ const Reviews = (props) => {
 	return (
 		<React.Fragment>
 			<div className="form-wrapper">
-				<h1 style={{ marginLeft: "3rem", fontSize: "3rem" }}>Reviews</h1>
+				<h1>Reviews</h1>
 				<div className="review-input-wrapper">
 					{props.isAuth ? (
 						<div>

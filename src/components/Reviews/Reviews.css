@@ -1,11 +1,15 @@
 .form-wrapper {
-	width: 63%;
+	width: 100%;
 	background-color: #fff;
-	margin: 3rem auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-start;
+}
+
+.form-wrapper h1 {
+	margin: auto;
+	font-size: 2rem;
 }
 
 .review-input-wrapper {
@@ -17,7 +21,7 @@
 }
 
 .review-input {
-	width: 30rem;
+	width: 100%;
 	outline: blue;
 	height: 2.5rem;
 }
@@ -25,11 +29,11 @@
 .post-review-btn {
 	margin: 1rem 0;
 	height: 2.5rem;
-	width: 7rem;
+	width: 100%;
 	color: white;
 	background-color: black;
 	border: white 2px solid;
-	font-size: 1rem;
+	font-size: 0.75rem;
 	transition: all 0.4s ease-in-out;
 }
 
@@ -45,4 +49,25 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+}
+
+@media screen and (min-width: 640px) {
+	.form-wrapper {
+		width: 60%;
+		margin: 3rem auto;
+	}
+
+	.form-wrapper h1 {
+		margin-left: 3rem;
+		font-size: 3rem;
+	}
+
+	.review-input {
+		width: 30rem;
+	}
+
+	.post-review-btn {
+		width: 7rem;
+		font-size: 1rem;
+	}
 }

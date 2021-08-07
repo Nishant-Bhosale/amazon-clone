@@ -9,9 +9,7 @@ const ProductPage = (props) => {
 	return (
 		<React.Fragment>
 			<div className="product-page-wrapper">
-				<h1 style={{ fontSize: "3rem", fontFamily: "Helvetica" }}>
-					{properties.title}
-				</h1>
+				<h1 className="product-heading">{properties.title}</h1>
 				<section className="product-description">
 					<ProductImage item={properties} title={properties} />
 					<div className="description-wrapper">
