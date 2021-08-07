@@ -30,13 +30,20 @@ const Reviews = (props) => {
 			displayName: props.name,
 		};
 
-		console.log(props);
-		axios.post(
-			"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/reviews.json",
-			rev,
-		);
-
-		setTextReview("");
+		if (textReview !== "") {
+			axios
+				.post(
+					"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/reviews.json",
+					rev,
+				)
+				.then((res) => {
+					setTextReview("");
+					document.querySelector(".review-input").value = "";
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
 	};
 
 	const setReviewText = (e) => {

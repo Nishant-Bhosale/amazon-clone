@@ -13,7 +13,7 @@
 }
 
 .review-input-wrapper {
-	margin: 1rem 3rem;
+	margin: 0.7rem 0.5rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -24,6 +24,7 @@
 	width: 100%;
 	outline: blue;
 	height: 2.5rem;
+	margin: 0;
 }
 
 .post-review-btn {
@@ -69,5 +70,9 @@
 	.post-review-btn {
 		width: 7rem;
 		font-size: 1rem;
+	}
+
+	.reveiw-input-wrapper {
+		margin: 1rem 3rem;
 	}
 }

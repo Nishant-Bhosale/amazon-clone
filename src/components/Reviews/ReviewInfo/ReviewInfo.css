@@ -1,5 +1,6 @@
 .review-text-wrapper {
 	color: black;
+	font-size: 0.8rem;
 	background-color: white;
 	border: 2px solid black;
 	width: 105%;
@@ -9,5 +10,15 @@
 }
 
 .review-text {
-	font-size: 1rem;
+	font-size: 0.75rem;
+}
+
+@media screen and (min-width: 640px) {
+	.review-text-wrapper {
+		font-size: 1rem;
+	}
+
+	.review-text {
+		font-size: 1rem;
+	}
 }

@@ -1,17 +1,16 @@
 import React from "react";
-import ProductImage from "../../components/ProductUI/ProductImage/ProductImage";
 import PostReview from "../../components/Reviews/Reviews";
 import "./ProductPage.css";
 
 const ProductPage = (props) => {
 	const properties = props.location.state.value;
-
+	console.log(properties);
 	return (
 		<React.Fragment>
 			<div className="product-page-wrapper">
 				<h1 className="product-heading">{properties.title}</h1>
 				<section className="product-description">
-					<ProductImage item={properties} title={properties} />
+					<img src={properties.image} className="product-page-image" alt="" />
 					<div className="description-wrapper">
 						<p>{properties.description}</p>
 					</div>
