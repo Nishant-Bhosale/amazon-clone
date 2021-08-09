@@ -96,9 +96,21 @@ const AddressPage = (props) => {
 		setModal(false);
 	};
 
+	console.log(userCart);
 	const onOrderHandler = () => {
 		setText("Ordered Successfully");
 		setSuccess(true);
+
+		const data = {
+			userCart,
+			userID: props.userID,
+		};
+		axios
+			.post(
+				"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/orders.json",
+				data,
+			)
+			.then((data) => console.log(data));
 		setTimeout(() => {
 			setModal(false);
 			setSuccess(false);
