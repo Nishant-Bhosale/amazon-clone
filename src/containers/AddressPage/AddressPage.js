@@ -23,26 +23,25 @@ const AddressPage = (props) => {
 	const { buildingName, pinCode, area, city, state } = address;
 
 	const userCart = props.location.state.userCart;
+	const { userID } = props;
 
 	let total = 0;
 
 	useEffect(() => {
-		const db = firebase.database().ref();
+		const addresses = firebase.database().ref("addresses/");
 
 		let fetchedAddress = {};
 
-		db.child("addresses")
-			.get()
-			.then((snapshot) => {
-				if (snapshot.exists()) {
-					setDoesAddressExist(true);
-					for (let key in snapshot.val()) {
-						fetchedAddress = { ...snapshot.val()[key], id: key };
-					}
-					setAddress(fetchedAddress);
-				}
+		addresses
+			.orderByChild("userID")
+			.equalTo(userID)
+			.on("child_added", (snap) => {
+				delete snap.val()[userID];
+				setDoesAddressExist(true);
+				fetchedAddress = { ...snap.val() };
+				setAddress(fetchedAddress);
 			});
-	}, [success]);
+	}, [success, userID]);
 
 	const onChangeHandler = (e) => {
 		setAddress({
@@ -53,14 +52,18 @@ const AddressPage = (props) => {
 
 	const onSubmitHandler = async (e) => {
 		e.preventDefault();
+
 		const newAddress = { ...address, userID: props.userID };
+
 		setDisabled(true);
+
 		try {
 			// eslint-disable-next-line
 			const result = await axios.post(
 				"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/addresses.json",
 				newAddress,
 			);
+
 			setText("Address Added Successfully");
 			setSuccess(true);
 			setDisabled(false);
@@ -75,7 +78,14 @@ const AddressPage = (props) => {
 
 		try {
 			// eslint-disable-next-line
-			const res = await db.child(address.id).remove();
+			const res = await db.child(address.userID).remove();
+			console.log(
+				db
+					.child(address.userID)
+					.equalTo(userID)
+					.get()
+					.then((d) => console.log(d)),
+			);
 			setAddress({
 				buildingName: "",
 				pinCode: "",
@@ -96,7 +106,6 @@ const AddressPage = (props) => {
 		setModal(false);
 	};
 
-	console.log(userCart);
 	const onOrderHandler = () => {
 		setText("Ordered Successfully");
 		setSuccess(true);
@@ -104,13 +113,16 @@ const AddressPage = (props) => {
 		const data = {
 			userCart,
 			userID: props.userID,
+			date: new Date(),
 		};
+
 		axios
 			.post(
 				"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/orders.json",
 				data,
 			)
 			.then((data) => console.log(data));
+
 		setTimeout(() => {
 			setModal(false);
 			setSuccess(false);

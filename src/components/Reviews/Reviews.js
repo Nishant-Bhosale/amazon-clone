@@ -20,7 +20,6 @@ const Reviews = (props) => {
 				arr.push(snap.val());
 				setFetchedReviews(arr);
 			});
-		console.log(arr);
 	}, [props]);
 
 	const postReview = () => {
