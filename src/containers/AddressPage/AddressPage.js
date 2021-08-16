@@ -13,6 +13,7 @@ const AddressPage = (props) => {
 		area: "",
 		city: "",
 		state: "",
+		id: null,
 	});
 	const [disabled, setDisabled] = useState(false);
 	const [doesAddressExist, setDoesAddressExist] = useState(false);
@@ -28,20 +29,20 @@ const AddressPage = (props) => {
 	let total = 0;
 
 	useEffect(() => {
-		const addresses = firebase.database().ref("addresses/");
-
+		const db = firebase.database().ref();
 		let fetchedAddress = {};
-
-		addresses
-			.orderByChild("userID")
-			.equalTo(userID)
-			.on("child_added", (snap) => {
-				delete snap.val()[userID];
-				setDoesAddressExist(true);
-				fetchedAddress = { ...snap.val() };
-				setAddress(fetchedAddress);
+		db.child("addresses")
+			.get()
+			.then((snapshot) => {
+				if (snapshot.exists()) {
+					setDoesAddressExist(true);
+					for (let key in snapshot.val()) {
+						fetchedAddress = { ...snapshot.val()[key], id: key };
+					}
+					setAddress(fetchedAddress);
+				}
 			});
-	}, [success, userID]);
+	}, [success]);
 
 	const onChangeHandler = (e) => {
 		setAddress({
@@ -77,15 +78,7 @@ const AddressPage = (props) => {
 		const db = firebase.database().ref("addresses");
 
 		try {
-			// eslint-disable-next-line
-			const res = await db.child(address.userID).remove();
-			console.log(
-				db
-					.child(address.userID)
-					.equalTo(userID)
-					.get()
-					.then((d) => console.log(d)),
-			);
+			const res = await db.child(address.id).remove();
 			setAddress({
 				buildingName: "",
 				pinCode: "",
