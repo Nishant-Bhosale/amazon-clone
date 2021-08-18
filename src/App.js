@@ -23,7 +23,7 @@ const App = (props) => {
 			}
 		});
 	}, [userID, authSuccess]);
-	// a
+
 	return (
 		<div className="App">
 			<NavBar />
