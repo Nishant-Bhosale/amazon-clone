@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import firebase from "../../utils/firebase";
@@ -30,19 +31,27 @@ const AddressPage = (props) => {
 
 	useEffect(() => {
 		const db = firebase.database().ref();
-		let fetchedAddress = {};
 		db.child("addresses")
 			.get()
 			.then((snapshot) => {
 				if (snapshot.exists()) {
-					setDoesAddressExist(true);
+					const fetchedAddresses = [];
+
 					for (let key in snapshot.val()) {
-						fetchedAddress = { ...snapshot.val()[key], id: key };
+						fetchedAddresses.push({ ...snapshot.val()[key], id: key });
 					}
-					setAddress(fetchedAddress);
+
+					const filteredAddresses = fetchedAddresses.filter((address) => {
+						return userID === address.userID;
+					});
+
+					if (filteredAddresses.length !== 0) {
+						setDoesAddressExist(true);
+						setAddress(filteredAddresses[0]);
+					}
 				}
 			});
-	}, [success]);
+	}, [success, userID]);
 
 	const onChangeHandler = (e) => {
 		setAddress({
@@ -78,6 +87,7 @@ const AddressPage = (props) => {
 		const db = firebase.database().ref("addresses");
 
 		try {
+			//eslint-disable-next-line
 			const res = await db.child(address.id).remove();
 			setAddress({
 				buildingName: "",
@@ -99,7 +109,7 @@ const AddressPage = (props) => {
 		setModal(false);
 	};
 
-	const onOrderHandler = () => {
+	const onOrderHandler = async () => {
 		setText("Ordered Successfully");
 		setSuccess(true);
 
@@ -109,18 +119,21 @@ const AddressPage = (props) => {
 			date: new Date(),
 		};
 
-		axios
-			.post(
+		try {
+			//eslint-disable-next-line
+			const res = await axios.post(
 				"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/orders.json",
 				data,
-			)
-			.then((data) => console.log(data));
+			);
 
-		setTimeout(() => {
-			setModal(false);
-			setSuccess(false);
-			window.location.href = "/";
-		}, 3000);
+			setTimeout(() => {
+				setModal(false);
+				setSuccess(false);
+				window.location.href = "/";
+			}, 3000);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	if (success) {
