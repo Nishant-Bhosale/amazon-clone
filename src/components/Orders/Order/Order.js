@@ -1,10 +1,15 @@
 import React from "react";
-
+import "./Order.css";
 const Order = ({ cart }) => {
 	return (
-		<div>
+		<div className="order-info-container">
 			{cart.map((item) => {
-				return <p key={item.id}>{item.title}</p>;
+				return (
+					<div key={item.id} style={{ margin: "1rem auto" }}>
+						<span>{item.title}</span>{" "}
+						<span style={{ fontWeight: "bold" }}>Price: {item.price}</span>
+					</div>
+				);
 			})}
 		</div>
 	);

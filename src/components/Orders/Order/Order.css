@@ -1,0 +1,10 @@
+.order-info-container {
+	margin: 1rem auto;
+	padding-left: 1rem;
+}
+
+.order-info-container > div {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+}

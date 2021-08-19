@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import firebase from "../../utils/firebase";
 import Orders from "../../components/Orders/Orders";
 import { connect } from "react-redux";
+import Spinner from "../../components/Spinner/Spinner";
 
 const OrdersPage = (props) => {
 	const [orders, setOrders] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	const { userID } = props;
 	useEffect(() => {
@@ -29,21 +31,37 @@ const OrdersPage = (props) => {
 							return {
 								cart: order.userCart,
 								date: order.date,
+								price: order.price,
 							};
 						});
 						setOrders(finalOrders);
+						setLoading(false);
 					}
 				}
 			});
 	}, [userID]);
-	return (
-		<div>
-			<h1>Your Orders</h1>
-			<div>
-				<Orders orders={orders} />
-			</div>
-		</div>
-	);
+
+	let page = <Spinner />;
+
+	loading
+		? (page = <Spinner />)
+		: (page = (
+				<div>
+					<h1>Order Summary</h1>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "column",
+							justifyContent: "center",
+							alignItems: "center",
+						}}
+					>
+						<Orders orders={orders} />
+					</div>
+				</div>
+		  ));
+
+	return page;
 };
 
 const mapStateToProps = (state) => {

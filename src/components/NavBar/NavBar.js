@@ -15,18 +15,20 @@ const NavBar = (props) => {
 					</Link>
 					<div className="navigation-items">
 						{props.isAuth ? (
-							<button onClick={props.signUserOut} className="signout-btn">
-								LogOut
-							</button>
+							<>
+								<button onClick={props.signUserOut} className="signout-btn">
+									LogOut
+								</button>
+								<Link className="navigation-item" to="/myorders">
+									Orders
+								</Link>
+							</>
 						) : (
 							<Link className="navigation-item" to="/authenticate">
 								SignUp/Login
 							</Link>
 						)}
 
-						<Link className="navigation-item" to="/myorders">
-							Orders
-						</Link>
 						<Link className="navigation-item" to="/mycart">
 							Cart
 						</Link>
