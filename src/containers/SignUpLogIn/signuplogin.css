@@ -8,7 +8,6 @@
 	margin: 3rem auto;
 	background-color: #fff;
 	border: 2px solid black;
-	width: 24rem;
 }
 
 .signup-form {
@@ -25,7 +24,7 @@
 	color: white;
 	background-color: black;
 	border: white 2px solid;
-	font-size: 1rem;
+	font-size: 0.9rem;
 	outline: none;
 	transition: all 0.4s ease-in-out;
 }
@@ -34,4 +33,10 @@
 	background-color: white;
 	color: black;
 	border: 2px solid black;
+}
+
+@media screen and (min-width: 640px) {
+	.signup-card {
+		width: 24rem;
+	}
 }

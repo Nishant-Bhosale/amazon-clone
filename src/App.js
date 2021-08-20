@@ -2,15 +2,16 @@ import React, { useEffect } from "react";
 import ProductCategoryPage from "./containers/ProductCategoryPage/ProductCategoryPage";
 import ProductPage from "./containers/ProductPage/ProductPage";
 import SignUpLogin from "./containers/SignUpLogIn/signuplogin";
+import AddressPage from "./containers/AddressPage/AddressPage";
+import OrdersPage from "./containers/OrdersPage/OrdersPage";
 import MainPage from "./containers/MainPage/MainPage";
 import UserCart from "./containers/UserCart/UserCart";
+import PrivateRoute from "./routing/PrivateRoute";
 import { Route, Switch } from "react-router-dom";
 import firebase from "./utils/firebase";
 import { connect } from "react-redux";
 import * as actions from "./store/actions/actions";
 import NavBar from "./components/NavBar/NavBar";
-import AddressPage from "./containers/AddressPage/AddressPage";
-import OrdersPage from "./containers/OrdersPage/OrdersPage";
 import "./App.css";
 
 const App = (props) => {
@@ -33,8 +34,8 @@ const App = (props) => {
 				<Route path="/category" component={ProductCategoryPage} />
 				<Route path="/mycart" component={UserCart} />
 				<Route path="/productinfopage" component={ProductPage} />
-				<Route path="/address" component={AddressPage} />
-				<Route path="/myorders" component={OrdersPage} />
+				<PrivateRoute path="/address" component={AddressPage} />
+				<PrivateRoute path="/myorders" component={OrdersPage} />
 				{/* <Route component={Error} /> */}
 			</Switch>
 		</div>

@@ -96,7 +96,6 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		authenticateUser: (email, password, isSignUp, name) =>
 			dispatch(actions.auth(email, password, isSignUp, name)),
-		setSuccessState: () => dispatch(actions.setAuthSuccessState()),
 	};
 };
 

@@ -69,4 +69,5 @@ const mapStateToProps = (state) => {
 		userID: state.userID,
 	};
 };
+
 export default connect(mapStateToProps)(OrdersPage);
