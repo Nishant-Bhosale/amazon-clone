@@ -34,16 +34,17 @@ const OrdersPage = (props) => {
 								price: order.price,
 							};
 						});
-						setOrders(finalOrders);
 						setLoading(false);
+						setOrders(finalOrders);
 					}
 				}
 			});
 	}, [userID]);
 
-	let page = <Spinner />;
-
-	if (orders.length === 0) {
+	let page;
+	if (loading) {
+		page = <Spinner />;
+	} else if (orders.length === 0) {
 		page = (
 			<div>
 				<h1>No Orders Found</h1>

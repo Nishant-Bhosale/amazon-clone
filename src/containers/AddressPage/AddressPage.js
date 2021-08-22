@@ -52,6 +52,8 @@ const AddressPage = (props) => {
 						setLoading(false);
 						setAddress(filteredAddresses[0]);
 					}
+				} else {
+					setLoading(false);
 				}
 			});
 	}, [success, userID]);
