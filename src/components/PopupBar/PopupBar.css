@@ -2,13 +2,13 @@
 	position: fixed;
 	top: 6rem;
 	margin: auto;
-	left: 37rem;
-	height: 9rem;
-	width: 15rem;
-	padding: 2rem;
-	z-index: 9000;
+	left: 5rem;
+	height: auto;
+	width: 7rem;
+	font-size: 0.75rem;
+	padding: 0.75rem;
+	z-index: 2000;
 	border: 2px solid rgb(1, 71, 42);
-	font-size: 1.3rem;
 	color: white;
 	display: grid;
 	place-items: center;
@@ -21,4 +21,14 @@
 
 .fail {
 	background: rgb(207, 63, 63);
+}
+
+@media screen and (min-width: 640px) {
+	.popup-bar {
+		left: 37rem;
+		font-size: 1.3rem;
+		padding: 2rem;
+		height: 9rem;
+		width: 15rem;
+	}
 }

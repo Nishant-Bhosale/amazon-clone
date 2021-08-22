@@ -12,8 +12,8 @@ const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case "AUTH_START":
 			return {
-				loading: true,
 				...state,
+				loading: true,
 			};
 		case "AUTH_SUCCESS":
 			return {

@@ -26,7 +26,6 @@ function MainPage() {
 					<img
 						src={`${process.env.PUBLIC_URL}/images/background-photo.jpg`}
 						alt=""
-						// style={{ width: "100vw", height: "95vh" }}
 						className="main-background-img"
 					/>
 					<p className="image-info">Best E-Commerce Site</p>

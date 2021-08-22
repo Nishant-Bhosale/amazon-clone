@@ -15,11 +15,11 @@ const Product = (props) => {
 			const newProduct = { ...item, userID };
 
 			try {
+				//eslint-disable-next-line
 				const result = await axios.post(
 					"https://ecommerce-site-6c3ee-default-rtdb.firebaseio.com/cart.json",
 					newProduct,
 				);
-				console.log(result);
 				setError(false);
 				setShowPopUpBar(true);
 			} catch (error) {

@@ -4,7 +4,7 @@ import "./ProductPage.css";
 
 const ProductPage = (props) => {
 	const properties = props.location.state.value;
-	console.log(properties);
+
 	return (
 		<React.Fragment>
 			<div className="product-page-wrapper">

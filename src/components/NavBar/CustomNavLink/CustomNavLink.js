@@ -4,7 +4,7 @@ import "./CustomNavLink.css";
 
 const CustomNavLink = ({ categoryName, children }) => {
 	return (
-		<div>
+		<div className="sticky-navbar-item-div">
 			<Link
 				className="sticky-navbar-item"
 				to={{
