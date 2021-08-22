@@ -43,24 +43,29 @@ const OrdersPage = (props) => {
 
 	let page = <Spinner />;
 
-	loading
-		? (page = <Spinner />)
-		: (page = (
-				<div>
-					<h1>Order Summary</h1>
-					<div
-						style={{
-							display: "flex",
-							flexDirection: "column",
-							justifyContent: "center",
-							alignItems: "center",
-						}}
-					>
-						<Orders orders={orders} />
-					</div>
+	if (orders.length === 0) {
+		page = (
+			<div>
+				<h1>No Orders Found</h1>
+			</div>
+		);
+	} else if (orders.length > 0) {
+		page = (
+			<div>
+				<h1>Order Summary</h1>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "center",
+						alignItems: "center",
+					}}
+				>
+					<Orders orders={orders} />
 				</div>
-		  ));
-
+			</div>
+		);
+	}
 	return page;
 };
 
