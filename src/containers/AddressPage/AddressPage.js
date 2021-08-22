@@ -49,9 +49,9 @@ const AddressPage = (props) => {
 
 					if (filteredAddresses.length !== 0) {
 						setDoesAddressExist(true);
-						setLoading(false);
 						setAddress(filteredAddresses[0]);
 					}
+					setLoading(false);
 				} else {
 					setLoading(false);
 				}

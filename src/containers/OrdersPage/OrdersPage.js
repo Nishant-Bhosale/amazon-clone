@@ -34,9 +34,9 @@ const OrdersPage = (props) => {
 								price: order.price,
 							};
 						});
-						setLoading(false);
 						setOrders(finalOrders);
 					}
+					setLoading(false);
 				}
 			});
 	}, [userID]);
