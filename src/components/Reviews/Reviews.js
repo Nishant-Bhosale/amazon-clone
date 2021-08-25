@@ -55,7 +55,7 @@ const Reviews = (props) => {
 				<h1>Reviews</h1>
 				<div className="review-input-wrapper">
 					{props.isAuth ? (
-						<div>
+						<div style={{ margin: "auto" }}>
 							<span>
 								<input
 									typeof="text"
@@ -84,7 +84,7 @@ const Reviews = (props) => {
 						{!fetchedReviews.length <= 0 ? (
 							<ReviewInfo reviews={fetchedReviews} />
 						) : (
-							<h2 style={{ textAlign: "left" }}>
+							<h2 style={{ textAlign: "center" }}>
 								No Reviews Found for {props.title}
 							</h2>
 						)}

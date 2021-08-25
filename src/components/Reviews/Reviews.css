@@ -52,6 +52,7 @@
 	width: 90%;
 	background-color: #fff;
 	display: flex;
+	margin: auto;
 	flex-direction: column;
 	align-items: flex-start;
 }
